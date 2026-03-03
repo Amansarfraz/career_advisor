@@ -34,21 +34,22 @@ class _SplashScreenState extends State<SplashScreen> {
               Color(0xFF1E3A8A), // Dark Blue
               Color(0xFF3B82F6), // Light Blue
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // 🔹 APP ICON (Yahan apna path laga dena)
+            const SizedBox(height: 80),
             Image.asset(
               'assets/images/logo.png', // <-- yahan apna icon path dalna
               height: 400,
               width: 400,
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 40),
 
             // 🔹 Tagline
             const Text(
