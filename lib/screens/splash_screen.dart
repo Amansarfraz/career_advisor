@@ -44,11 +44,11 @@ class _SplashScreenState extends State<SplashScreen> {
             // 🔹 APP ICON (Yahan apna path laga dena)
             Image.asset(
               'assets/images/logo.png', // <-- yahan apna icon path dalna
-              height: 350,
-              width: 350,
+              height: 400,
+              width: 400,
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
 
             // 🔹 Tagline
             const Text(
