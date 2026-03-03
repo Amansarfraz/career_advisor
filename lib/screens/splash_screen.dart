@@ -14,12 +14,12 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     // 3 second delay then navigate
-    //   Timer(const Duration(seconds: 3), () {
-    //     Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => const NextScreen()),
-    //     );
-    //   });
+    Timer(const Duration(seconds: 3), () {
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => const NextScreen()),
+      // );
+    });
   }
 
   @override
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             // 🔹 APP ICON (Yahan apna path laga dena)
             Image.asset(
-              'assets/images/app_icon.png', // <-- yahan apna icon path dalna
+              'assets/images/logo.png', // <-- yahan apna icon path dalna
               height: 120,
             ),
 
@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
             // 🔹 Tagline
             const Text(
-              "Guiding Your Future, Step by Step",
+              "Guiding Your Future, Step\n by Step",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
