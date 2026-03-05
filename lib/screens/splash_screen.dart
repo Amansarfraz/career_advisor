@@ -266,7 +266,7 @@ class SplashScreen extends StatelessWidget {
               fit: BoxFit.contain,
             ),
 
-            const SizedBox(height: 28),
+            const SizedBox(height: 20),
 
             // Tagline
             const Text(
@@ -274,8 +274,8 @@ class SplashScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 30,
-                fontWeight: FontWeight.w400,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
                 height: 1.6,
                 letterSpacing: 0.3,
