@@ -211,7 +211,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 fit: BoxFit.contain,
               ),
 
-              SizedBox(height: screenHeight * 0.01),
+              SizedBox(height: screenHeight * 0.010),
 
               /// 🔹 TAGLINE
               Text(
@@ -219,7 +219,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: screenHeight * 0.06,
+                  fontSize: screenHeight * 0.03,
                   fontWeight: FontWeight.w500,
                 ),
               ),
