@@ -181,8 +181,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+    //final screenHeight = MediaQuery.of(context).size.height;
+    //final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Container(
@@ -203,15 +203,17 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: 80),
+
               /// 🔹 BIG LOGO
               Image.asset(
                 'assets/images/logo.png',
-                height: screenHeight * 0.80,
-                width: screenWidth * 0.95,
+                height: 265,
+                width: 225,
                 fit: BoxFit.contain,
               ),
 
-              SizedBox(height: screenHeight * 0.010),
+              SizedBox(height: 40),
 
               /// 🔹 TAGLINE
               Text(
@@ -219,8 +221,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: screenHeight * 0.03,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
