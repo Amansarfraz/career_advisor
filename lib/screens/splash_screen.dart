@@ -211,15 +211,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 fit: BoxFit.contain,
               ),
 
-              SizedBox(height: screenHeight * 0.10),
+              SizedBox(height: screenHeight * 0.02),
 
               /// 🔹 TAGLINE
               Text(
-                "Guiding Your Future, Step by Step",
+                "Guiding Your Future, Step \n by Step",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: screenHeight * 0.028,
+                  fontSize: screenHeight * 0.03,
                   fontWeight: FontWeight.w500,
                 ),
               ),
