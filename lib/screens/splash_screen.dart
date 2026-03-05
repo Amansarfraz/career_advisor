@@ -55,6 +55,7 @@
 // }
 
 import 'dart:async';
+import 'package:career_advisor/screens/get_started_screen.dart';
 import 'package:flutter/material.dart';
 // import 'next_screen.dart';  // 👈 apni next screen import kar lena
 
@@ -120,8 +121,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 fontSize: 30,
                 fontWeight: FontWeight.w400,
                 color: Colors.white,
-                height: 1.6,
-                letterSpacing: 0.3,
+                // height: 1.6,
+                // letterSpacing: 0.3,
               ),
             ),
           ],
