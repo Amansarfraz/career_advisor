@@ -203,17 +203,17 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 80),
+              const SizedBox(height: 50),
 
               /// 🔹 BIG LOGO
               Image.asset(
                 'assets/images/logo.png',
-                height: 600,
-                width: 560,
+                height: 500,
+                width: 460,
                 fit: BoxFit.contain,
               ),
 
-              SizedBox(height: 10),
+              SizedBox(height: 40),
 
               /// 🔹 TAGLINE
               Text(
