@@ -34,7 +34,7 @@ class GetStartedScreen extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
 
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
 
                   const Text(
                     'Guiding Your Future, Step\nby Step',
@@ -50,7 +50,7 @@ class GetStartedScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 10),
 
               /// 🔵 GET STARTED BUTTON
               Padding(
