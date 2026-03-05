@@ -266,7 +266,7 @@ class SplashScreen extends StatelessWidget {
               fit: BoxFit.contain,
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 28),
 
             // Tagline
             const Text(
