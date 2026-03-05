@@ -261,8 +261,8 @@ class SplashScreen extends StatelessWidget {
             // Apna logo assets mein add karein aur path yahan likhein
             Image.asset(
               'assets/images/logo.png', // 👈 Yahan apna logo path likhein
-              width: 220,
-              height: 220,
+              width: 420,
+              height: 420,
               fit: BoxFit.contain,
             ),
 
@@ -274,7 +274,7 @@ class SplashScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 15,
+                fontSize: 30,
                 fontWeight: FontWeight.w400,
                 color: Colors.white,
                 height: 1.6,
