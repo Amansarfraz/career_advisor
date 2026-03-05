@@ -208,8 +208,8 @@ class _SplashScreenState extends State<SplashScreen> {
               /// 🔹 BIG LOGO
               Image.asset(
                 'assets/images/logo.png',
-                height: 265,
-                width: 225,
+                height: 465,
+                width: 425,
                 fit: BoxFit.contain,
               ),
 
@@ -221,7 +221,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 36,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
