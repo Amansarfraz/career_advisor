@@ -208,12 +208,12 @@ class _SplashScreenState extends State<SplashScreen> {
               /// 🔹 BIG LOGO
               Image.asset(
                 'assets/images/logo.png',
-                height: 500,
-                width: 460,
+                height: 600,
+                width: 560,
                 fit: BoxFit.contain,
               ),
 
-              SizedBox(height: 50),
+              SizedBox(height: 10),
 
               /// 🔹 TAGLINE
               Text(
