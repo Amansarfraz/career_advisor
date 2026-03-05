@@ -50,6 +50,7 @@ class GetStartedScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 25),
 
               /// 🔵 GET STARTED BUTTON
               Padding(
@@ -62,7 +63,7 @@ class GetStartedScreen extends StatelessWidget {
                       // next screen navigation
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF2751AC),
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
@@ -72,7 +73,7 @@ class GetStartedScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                        color: Color(0xFF2751AC),
                       ),
                     ),
                   ),
