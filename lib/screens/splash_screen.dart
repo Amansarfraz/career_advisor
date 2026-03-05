@@ -201,19 +201,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
         child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(height: 80),
 
               /// 🔹 BIG LOGO
               Image.asset(
                 'assets/images/logo.png',
-                height: 465,
-                width: 425,
+                height: 500,
+                width: 460,
                 fit: BoxFit.contain,
               ),
 
-              SizedBox(height: 40),
+              SizedBox(height: 50),
 
               /// 🔹 TAGLINE
               Text(
@@ -221,7 +221,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
               ),
