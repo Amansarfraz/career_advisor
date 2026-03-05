@@ -155,78 +155,133 @@
 //   }
 // }
 
-import 'dart:async';
+// import 'dart:async';
+// import 'package:flutter/material.dart';
+
+// class SplashScreen extends StatefulWidget {
+//   const SplashScreen({super.key});
+
+//   @override
+//   State<SplashScreen> createState() => _SplashScreenState();
+// }
+
+// class _SplashScreenState extends State<SplashScreen> {
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     // 3 second delay then navigate
+//     Timer(const Duration(seconds: 3), () {
+//       // Navigator.pushReplacement(
+//       //   context,
+//       //   MaterialPageRoute(builder: (context) => const NextScreen()),
+//       // );
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     //final screenHeight = MediaQuery.of(context).size.height;
+//     //final screenWidth = MediaQuery.of(context).size.width;
+
+//     return Scaffold(
+//       body: Container(
+//         width: double.infinity,
+//         height: double.infinity,
+//         decoration: const BoxDecoration(
+//           gradient: LinearGradient(
+//             colors: [
+//               Color(0xFF1E3A8A), // Dark Blue
+//               Color(0xFF3B82F6), // Light Blue
+//             ],
+//             begin: Alignment.topCenter,
+//             end: Alignment.bottomCenter,
+//           ),
+//         ),
+
+//         child: SafeArea(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               const SizedBox(height: 50),
+
+//               /// 🔹 BIG LOGO
+//               Image.asset(
+//                 'assets/images/logo.png',
+//                 height: 500,
+//                 width: 460,
+//                 fit: BoxFit.contain,
+//               ),
+
+//               SizedBox(height: 40),
+
+//               /// 🔹 TAGLINE
+//               Text(
+//                 "Guiding Your Future, Step \n by Step",
+//                 textAlign: TextAlign.center,
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                   fontSize: 30,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    // 3 second delay then navigate
-    Timer(const Duration(seconds: 3), () {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => const NextScreen()),
-      // );
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    //final screenHeight = MediaQuery.of(context).size.height;
-    //final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFF1E3A8A), // Dark Blue
-              Color(0xFF3B82F6), // Light Blue
-            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-          ),
-        ),
-
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(height: 50),
-
-              /// 🔹 BIG LOGO
-              Image.asset(
-                'assets/images/logo.png',
-                height: 500,
-                width: 460,
-                fit: BoxFit.contain,
-              ),
-
-              SizedBox(height: 40),
-
-              /// 🔹 TAGLINE
-              Text(
-                "Guiding Your Future, Step \n by Step",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            colors: [
+              Color(0xFF1E3A8A), // Dark Blue
+              Color(0xFF3B82F6), // Light Blue // light blue bottom
             ],
           ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // ✅ LOGO — Career Advisor text logo ke andar hi hai
+            // Apna logo assets mein add karein aur path yahan likhein
+            Image.asset(
+              'assets/images/logo.png', // 👈 Yahan apna logo path likhein
+              width: 220,
+              height: 220,
+              fit: BoxFit.contain,
+            ),
+
+            const SizedBox(height: 28),
+
+            // Tagline
+            const Text(
+              'Guiding Your Future, Step\nby Step',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                color: Colors.white,
+                height: 1.6,
+                letterSpacing: 0.3,
+              ),
+            ),
+          ],
         ),
       ),
     );
