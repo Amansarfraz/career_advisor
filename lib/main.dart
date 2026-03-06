@@ -4,6 +4,7 @@ import 'screens/get_started_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/career_assessment_screen.dart';
 import 'screens/career_recommendation_screen.dart';
+import 'screens/career_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,11 @@ class MyApp extends StatelessWidget {
             const CareerAssessmentScreen(),
         '/career_recommendation_screen': (context) =>
             const CareerAssessmentScreen(),
+        '/career_details_screen': (context) => const CareerRecommendationScreen(
+          matchPercentage: 85,
+          careerName: "Software Engineer",
+          shortExplanation: ".....",
+        ),
       },
     );
   }
