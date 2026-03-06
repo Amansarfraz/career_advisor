@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart'; // apne folder ke hisaab se adjust karo
 import 'screens/get_started_screen.dart';
 import 'screens/login_screen.dart';
+import 'screens/career_assessment_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/get_started_screen': (context) => const GetStartedScreen(),
         '/login_screen': (context) => const LoginScreen(),
+        '/career_assessment_screen': (context) =>
+            const CareerAssessmentScreen(),
       },
     );
   }

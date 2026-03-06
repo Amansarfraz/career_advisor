@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'career_assessment_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -68,7 +69,15 @@ class LoginScreen extends StatelessWidget {
 
             /// LOGIN BUTTON
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const CareerAssessmentScreen(), // 👈 apni screen ka naam
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xffE5E7EB),
                 padding: const EdgeInsets.symmetric(
