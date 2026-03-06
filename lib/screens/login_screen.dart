@@ -21,8 +21,8 @@ class LoginScreen extends StatelessWidget {
           children: [
             /// LOGO IMAGE
             Image.asset(
-              "assets/logo.png", // apna image path yahan laga dena
-              height: 120,
+              "assets/images/logo.png", // apna image path yahan laga dena
+              height: 220,
             ),
 
             const SizedBox(height: 40),
