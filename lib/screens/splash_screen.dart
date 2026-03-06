@@ -105,12 +105,12 @@ class _SplashScreenState extends State<SplashScreen> {
             /// LOGO
             Image.asset(
               'assets/images/logo.png',
-              width: 500,
-              height: 500,
+              width: 600,
+              height: 600,
               fit: BoxFit.contain,
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
 
             /// TAGLINE
             const Text(

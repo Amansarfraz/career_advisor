@@ -23,19 +23,18 @@ class GetStartedScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 20),
-
+              const SizedBox(height: 40), //
               /// 🔵 LOGO + TAGLINE
               Column(
                 children: [
                   Image.asset(
                     'assets/images/logo.png',
-                    width: 500,
-                    height: 500,
+                    width: 600,
+                    height: 600,
                     fit: BoxFit.contain,
                   ),
 
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 5), //
 
                   const Text(
                     'Guiding Your Future, Step\nby Step',
@@ -51,7 +50,7 @@ class GetStartedScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
               /// 🔵 GET STARTED BUTTON
               Padding(
