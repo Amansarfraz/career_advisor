@@ -176,7 +176,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                   const SizedBox(width: 10),
 
                   const Text(
-                    "Career Assessment",
+                    "  Career Assessment",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
