@@ -1,4 +1,5 @@
 // import 'package:flutter/material.dart';
+// import 'career_recommendation_screen.dart';
 
 // class CareerAssessmentScreen extends StatefulWidget {
 //   const CareerAssessmentScreen({super.key});
@@ -153,6 +154,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     double progress = (currentQuestion + 1) / questions.length;
+//     int percent = ((currentQuestion + 1) * 100 ~/ questions.length);
 
 //     return Scaffold(
 //       body: SafeArea(
@@ -161,29 +163,16 @@
 //             /// TOP HEADER
 //             Container(
 //               height: 80,
-//               width: 412,
+//               width: double.infinity,
+//               alignment: Alignment.center,
 //               color: const Color(0xff3F72C8),
-//               child: Row(
-//                 children: [
-//                   // const SizedBox(width: 10),
-
-//                   // IconButton(
-//                   //   icon: const Icon(Icons.arrow_back, color: Colors.white),
-//                   //   onPressed: () {
-//                   //     Navigator.pop(context);
-//                   //   },
-//                   // ),
-//                   const SizedBox(width: 10),
-
-//                   const Text(
-//                     "  Career Assessment",
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                       fontSize: 30,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                 ],
+//               child: const Text(
+//                 "Career Assessment",
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                   fontSize: 30,
+//                   fontWeight: FontWeight.bold,
+//                 ),
 //               ),
 //             ),
 
@@ -203,6 +192,18 @@
 //                     ),
 
 //                     const SizedBox(height: 10),
+
+//                     /// PERCENTAGE TEXT
+//                     Text(
+//                       "$percent%",
+//                       style: const TextStyle(
+//                         fontSize: 18,
+//                         fontWeight: FontWeight.bold,
+//                         color: Color(0xff3F72C8),
+//                       ),
+//                     ),
+
+//                     const SizedBox(height: 8),
 
 //                     /// PROGRESS BAR
 //                     SizedBox(
@@ -316,6 +317,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'career_recommendation_screen.dart';
 
 class CareerAssessmentScreen extends StatefulWidget {
   const CareerAssessmentScreen({super.key});
@@ -464,6 +466,19 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
         currentQuestion++;
         selectedOption = null;
       });
+    } else {
+      /// LAST QUESTION → GO TO RESULT SCREEN
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CareerRecommendationScreen(
+            matchPercentage: 82,
+            careerName: "Software Engineer",
+            shortExplanation:
+                "Match your logical thinking, coding interest, and preference for remote work.",
+          ),
+        ),
+      );
     }
   }
 
@@ -476,7 +491,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            /// TOP HEADER
+            /// HEADER
             Container(
               height: 80,
               width: double.infinity,
@@ -498,7 +513,6 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    /// QUESTION NUMBER
                     Text(
                       "Question ${currentQuestion + 1} of 10",
                       style: const TextStyle(
@@ -509,7 +523,6 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
 
                     const SizedBox(height: 10),
 
-                    /// PERCENTAGE TEXT
                     Text(
                       "$percent%",
                       style: const TextStyle(
@@ -521,7 +534,6 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
 
                     const SizedBox(height: 8),
 
-                    /// PROGRESS BAR
                     SizedBox(
                       width: 380,
                       child: LinearProgressIndicator(
@@ -535,7 +547,6 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
 
                     const SizedBox(height: 30),
 
-                    /// QUESTION TEXT
                     Text(
                       questions[currentQuestion]["question"],
                       style: const TextStyle(
@@ -546,7 +557,6 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
 
                     const SizedBox(height: 30),
 
-                    /// OPTIONS
                     ...List.generate(4, (index) {
                       bool isSelected = selectedOption == index;
 
@@ -595,9 +605,8 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                       );
                     }),
 
-                    const SizedBox(height: 70),
+                    const Spacer(),
 
-                    /// NEXT BUTTON
                     Center(
                       child: SizedBox(
                         width: 368,
@@ -621,6 +630,8 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                         ),
                       ),
                     ),
+
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
