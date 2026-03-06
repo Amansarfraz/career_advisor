@@ -164,11 +164,19 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
               width: 412,
               color: const Color(0xff3F72C8),
               child: Row(
-                children: const [
-                  SizedBox(width: 10),
-                  Icon(Icons.arrow_back, color: Colors.white),
-                  SizedBox(width: 10),
-                  Text(
+                children: [
+                  const SizedBox(width: 10),
+
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+
+                  const SizedBox(width: 10),
+
+                  const Text(
                     "Career Assessment",
                     style: TextStyle(
                       color: Colors.white,
@@ -271,7 +279,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                       );
                     }),
 
-                    const Spacer(),
+                    const SizedBox(height: 20),
 
                     /// NEXT BUTTON
                     Center(
