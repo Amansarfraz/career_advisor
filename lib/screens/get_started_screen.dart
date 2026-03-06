@@ -50,7 +50,7 @@ class GetStartedScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 40),
 
               /// 🔵 GET STARTED BUTTON
               Padding(
