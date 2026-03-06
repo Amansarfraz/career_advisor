@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
             /// EMAIL FIELD
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 30),
+
               decoration: BoxDecoration(
                 color: const Color(0xffE5E7EB),
                 borderRadius: BorderRadius.circular(30),
@@ -41,6 +42,7 @@ class LoginScreen extends StatelessWidget {
                   prefixIcon: Icon(Icons.email),
                   hintText: "Email",
                   contentPadding: EdgeInsets.symmetric(vertical: 18),
+                  labelStyle: TextStyle(fontSize: 20),
                 ),
               ),
             ),
@@ -56,6 +58,7 @@ class LoginScreen extends StatelessWidget {
               ),
               child: const TextField(
                 obscureText: true,
+                style: const TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.lock),
@@ -93,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0xff1E3A8A),
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 20,
                 ),
               ),
             ),

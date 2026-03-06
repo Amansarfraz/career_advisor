@@ -23,19 +23,20 @@ class GetStartedScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 40), //
+              const SizedBox(height: 20),
+
               /// 🔵 LOGO + TAGLINE
               Column(
                 children: [
                   Image.asset(
                     'assets/images/logo.png',
-                    width: 600,
-                    height: 600,
-                    fit: BoxFit.contain,
+                    width: 350,
+                    height: 350,
+                    fit: BoxFit
+                        .cover, // cover se tagline bilkul neeche aa jayegi
                   ),
 
-                  const SizedBox(height: 1), //
-
+                  /// TAGLINE (logo ke bilkul neeche)
                   const Text(
                     'Guiding Your Future, Step\nby Step',
                     textAlign: TextAlign.center,
@@ -50,7 +51,8 @@ class GetStartedScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+
+              const SizedBox(height: 30),
 
               /// 🔵 GET STARTED BUTTON
               Padding(
@@ -63,10 +65,9 @@ class GetStartedScreen extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              const LoginScreen(), // 👈 apni screen ka naam
+                          builder: (context) => const LoginScreen(),
                         ),
-                      ); // next screen navigation
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
