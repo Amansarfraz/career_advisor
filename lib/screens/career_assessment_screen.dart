@@ -279,7 +279,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                       );
                     }),
 
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 40),
 
                     /// NEXT BUTTON
                     Center(
