@@ -172,7 +172,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                     "Career Assessment",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -190,7 +190,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                     Text(
                       "Question ${currentQuestion + 1} of 10",
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -202,7 +202,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
                       width: 380,
                       child: LinearProgressIndicator(
                         value: progress,
-                        minHeight: 10,
+                        minHeight: 15,
                         borderRadius: BorderRadius.circular(20),
                         backgroundColor: Colors.grey.shade300,
                         color: const Color(0xff3F72C8),
