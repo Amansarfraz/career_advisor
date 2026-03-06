@@ -1,3 +1,4 @@
+import 'package:career_advisor/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedScreen extends StatelessWidget {
@@ -60,7 +61,13 @@ class GetStartedScreen extends StatelessWidget {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      // next screen navigation
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const LoginScreen(), // 👈 apni screen ka naam
+                        ),
+                      ); // next screen navigation
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -72,7 +79,7 @@ class GetStartedScreen extends StatelessWidget {
                       "Get Started",
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.bold,
                         color: Color(0xFF2751AC),
                       ),
                     ),

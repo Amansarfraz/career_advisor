@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xff1E3A8A), Color(0xff3B82F6)],
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            /// LOGO IMAGE
+            Image.asset(
+              "assets/logo.png", // apna image path yahan laga dena
+              height: 120,
+            ),
+
+            const SizedBox(height: 40),
+
+            /// EMAIL FIELD
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              decoration: BoxDecoration(
+                color: const Color(0xffE5E7EB),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: const TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.email),
+                  hintText: "Email",
+                  contentPadding: EdgeInsets.symmetric(vertical: 18),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// PASSWORD FIELD
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              decoration: BoxDecoration(
+                color: const Color(0xffE5E7EB),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.lock),
+                  hintText: "Password",
+                  contentPadding: EdgeInsets.symmetric(vertical: 18),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 35),
+
+            /// LOGIN BUTTON
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xffE5E7EB),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 60,
+                  vertical: 15,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: const Text(
+                "Login",
+                style: TextStyle(
+                  color: Color(0xff1E3A8A),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
