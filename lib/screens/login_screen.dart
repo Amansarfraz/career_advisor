@@ -31,17 +31,22 @@ class LoginScreen extends StatelessWidget {
             /// EMAIL FIELD
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 30),
-
               decoration: BoxDecoration(
                 color: const Color(0xffE5E7EB),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: const TextField(
+                style: TextStyle(
+                  fontSize: 20, // ✅ font size bada kiya
+                ),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.email),
                   hintText: "Email",
                   contentPadding: EdgeInsets.symmetric(vertical: 18),
+                  hintStyle: TextStyle(
+                    fontSize: 20, // hint text bhi bada
+                  ),
                   labelStyle: TextStyle(fontSize: 20),
                 ),
               ),
