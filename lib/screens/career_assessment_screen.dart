@@ -165,15 +165,14 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
               color: const Color(0xff3F72C8),
               child: Row(
                 children: [
-                  const SizedBox(width: 10),
+                  // const SizedBox(width: 10),
 
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-
+                  // IconButton(
+                  //   icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  //   onPressed: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  // ),
                   const SizedBox(width: 10),
 
                   const Text(
