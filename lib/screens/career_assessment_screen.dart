@@ -15,23 +15,28 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
     {
       "question": "What do you enjoy doing in your free time?",
       "options": [
-        "Exploring new apps or gadgets (Tech)",
-        "Sketching or creating designs (Creative)",
-        "Meeting and talking to new people (Social)",
-        "Organizing data or checking records (Analytical)",
+        "Exploring new apps or gadgets",
+        "Sketching or creating designs",
+        "Meeting and talking to new people",
+        "Organizing data or checking records",
       ],
+      "icons": [Icons.devices, Icons.brush, Icons.people, Icons.analytics],
     },
-
     {
       "question": "What kind of problems do you enjoy solving the most?",
       "options": [
         "Logical and mathematical puzzles",
         "Fixing design or layout issues",
         "Resolving conflicts between people",
-        "Creating business or financial plans",
+        "Creating business plans",
+      ],
+      "icons": [
+        Icons.calculate,
+        Icons.design_services,
+        Icons.groups,
+        Icons.business_center,
       ],
     },
-
     {
       "question": "If you had to read a book, what would the topic be?",
       "options": [
@@ -40,76 +45,97 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
         "Psychology and Human Behavior",
         "Business Success Stories",
       ],
+      "icons": [
+        Icons.computer,
+        Icons.palette,
+        Icons.psychology,
+        Icons.trending_up,
+      ],
     },
-
     {
       "question": "What is your greatest strength?",
       "options": [
-        "I am a fast learner of new systems",
-        "I have a very strong imagination",
-        "I can explain complex things clearly",
-        "I am highly organized and disciplined",
+        "Fast learner of new systems",
+        "Strong imagination",
+        "Explaining complex things",
+        "Highly organized",
+      ],
+      "icons": [
+        Icons.speed,
+        Icons.lightbulb,
+        Icons.record_voice_over,
+        Icons.checklist,
       ],
     },
-
     {
       "question": "What do you find easiest to do on a computer?",
       "options": [
-        "Writing code or changing technical settings",
-        "Editing pictures or videos",
-        "Writing emails and making presentations",
-        "Managing spreadsheets and files",
+        "Writing code",
+        "Editing pictures",
+        "Writing emails",
+        "Managing spreadsheets",
       ],
+      "icons": [Icons.code, Icons.photo, Icons.email, Icons.table_chart],
     },
-
     {
       "question": "How do you react in difficult situations?",
       "options": [
-        "I stay calm and find a logical solution",
-        "I think of a unique or creative way out",
-        "I seek help and build a team to solve it",
-        "I double-check all the facts and data",
+        "Logical solution",
+        "Creative idea",
+        "Team solution",
+        "Check all data",
+      ],
+      "icons": [
+        Icons.psychology_alt,
+        Icons.auto_awesome,
+        Icons.groups_2,
+        Icons.fact_check,
       ],
     },
-
     {
       "question": "What would your dream workspace look like?",
       "options": [
-        "A modern high-tech laboratory",
-        "A creative studio or a colorful workspace",
-        "A busy environment with lots of people",
-        "A quiet and professional formal office",
+        "High tech lab",
+        "Creative studio",
+        "Busy office",
+        "Quiet office",
+      ],
+      "icons": [
+        Icons.memory,
+        Icons.color_lens,
+        Icons.business,
+        Icons.meeting_room,
       ],
     },
-
     {
       "question": "How do you prefer to work?",
       "options": [
-        "Working alone with deep focus",
-        "Collaborating within a team",
-        "Leading and managing others",
-        "Following set rules and instructions",
+        "Work alone",
+        "Team collaboration",
+        "Lead others",
+        "Follow rules",
       ],
+      "icons": [Icons.person, Icons.group, Icons.leaderboard, Icons.rule],
     },
-
     {
-      "question": "What is most important to you in a career?",
-      "options": [
-        "Innovation (Creating something new)",
-        "Freedom (Working on my own terms)",
-        "Social Impact (Helping other people)",
-        "High Salary and Job Stability",
+      "question": "What is most important in career?",
+      "options": ["Innovation", "Freedom", "Helping people", "High salary"],
+      "icons": [
+        Icons.auto_graph,
+        Icons.flight_takeoff,
+        Icons.volunteer_activism,
+        Icons.attach_money,
       ],
     },
-
     {
       "question": "What is your ideal work schedule?",
       "options": [
-        "Flexible hours (Working whenever I want)",
-        "9 to 5 (Fixed and stable routine)",
-        "Project-based (Work until the task is done)",
-        "Outdoor work involving travel",
+        "Flexible hours",
+        "9 to 5 routine",
+        "Project based",
+        "Outdoor travel work",
       ],
+      "icons": [Icons.schedule, Icons.work, Icons.task, Icons.travel_explore],
     },
   ];
 
@@ -129,112 +155,149 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
     double progress = (currentQuestion + 1) / questions.length;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Career Assessment"),
-        backgroundColor: const Color(0xff3F72C8),
-      ),
-
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Question ${currentQuestion + 1} of 10",
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text("${(progress * 100).toInt()}%"),
-              ],
-            ),
-
-            const SizedBox(height: 10),
-
-            LinearProgressIndicator(
-              value: progress,
-              borderRadius: BorderRadius.circular(10),
-              minHeight: 8,
-              backgroundColor: Colors.grey.shade300,
-              color: Colors.blue,
-            ),
-
-            const SizedBox(height: 25),
-
-            Text(
-              "Question ${currentQuestion + 1}",
-              style: const TextStyle(fontSize: 16),
-            ),
-
-            const SizedBox(height: 10),
-
-            Text(
-              questions[currentQuestion]["question"],
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-
-            const SizedBox(height: 20),
-
-            ...List.generate(4, (index) {
-              bool isSelected = selectedOption == index;
-
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedOption = index;
-                  });
-                },
-
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 12),
-
-                  padding: const EdgeInsets.all(14),
-
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-
-                    border: Border.all(color: Colors.blue),
-
-                    color: isSelected ? Colors.blue.shade50 : Colors.white,
+            /// TOP HEADER
+            Container(
+              height: 80,
+              width: 412,
+              color: const Color(0xff3F72C8),
+              child: Row(
+                children: const [
+                  SizedBox(width: 10),
+                  Icon(Icons.arrow_back, color: Colors.white),
+                  SizedBox(width: 10),
+                  Text(
+                    "Career Assessment",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                ],
+              ),
+            ),
 
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          questions[currentQuestion]["options"][index],
-                          style: const TextStyle(fontSize: 15),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// QUESTION NUMBER
+                    Text(
+                      "Question ${currentQuestion + 1} of 10",
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    /// PROGRESS BAR
+                    SizedBox(
+                      width: 380,
+                      child: LinearProgressIndicator(
+                        value: progress,
+                        minHeight: 10,
+                        borderRadius: BorderRadius.circular(20),
+                        backgroundColor: Colors.grey.shade300,
+                        color: const Color(0xff3F72C8),
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    /// QUESTION TEXT
+                    Text(
+                      questions[currentQuestion]["question"],
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    /// OPTIONS
+                    ...List.generate(4, (index) {
+                      bool isSelected = selectedOption == index;
+
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedOption = index;
+                          });
+                        },
+                        child: Container(
+                          height: 70,
+                          width: 380,
+                          margin: const EdgeInsets.only(bottom: 14),
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(color: Colors.blue),
+                            color: isSelected
+                                ? Colors.blue.shade50
+                                : Colors.white,
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                questions[currentQuestion]["icons"][index],
+                                color: const Color(0xff3F72C8),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Text(
+                                  questions[currentQuestion]["options"][index],
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              if (isSelected)
+                                const Icon(
+                                  Icons.check_circle,
+                                  color: Color(0xff3F72C8),
+                                ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+
+                    const Spacer(),
+
+                    /// NEXT BUTTON
+                    Center(
+                      child: SizedBox(
+                        width: 368,
+                        height: 67,
+                        child: ElevatedButton(
+                          onPressed: nextQuestion,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xff3F72C8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                          ),
+                          child: const Text(
+                            "Next Question",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
-
-                      if (isSelected)
-                        const Icon(Icons.check_box, color: Colors.blue),
-                    ],
-                  ),
-                ),
-              );
-            }),
-
-            const Spacer(),
-
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: nextQuestion,
-
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xff3F72C8),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-
-                child: const Text(
-                  "Next Question",
-                  style: TextStyle(fontSize: 18),
+                    ),
+                  ],
                 ),
               ),
             ),
