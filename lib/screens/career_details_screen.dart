@@ -1,6 +1,7 @@
 import 'package:career_advisor/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'career_recommendation_screen.dart';
+import '../main.dart'; // make sure the path points correctly to your main.dart
 
 // ─── HARDCODED CAREER DATA ─────────────────────────────────────────────────────
 class _CareerData {
@@ -264,17 +265,18 @@ class CareerDetailsScreen extends StatelessWidget {
                       color: Colors.white,
                       size: 26,
                     ),
+
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => SettingScreen(
-                            isDark: false, //MyApp.of(context)!.isDarkMode,
-                            onToggle:
-                                (value) {}, //MyApp.of(context)!.toggleTheme,
+                            isDark: MyApp.of(context)!.isDarkMode,
+                            onToggle: MyApp.of(context)!.toggleTheme,
                           ),
                         ),
                       );
+
                       // Navigator.pushReplacement(
                       //   context,
                       //   MaterialPageRoute(

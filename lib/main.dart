@@ -199,7 +199,10 @@ class _MyAppState extends State<MyApp> {
             ),
         '/career_details_screen': (context) =>
             const CareerDetailsScreen(careerName: "Software Engineer"),
-        '/setting_screen': (context) => const SettingScreen(),
+        '/setting_screen': (context) => SettingScreen(
+          isDark: MyApp.of(context)!.isDarkMode,
+          onToggle: MyApp.of(context)!.toggleTheme,
+        ),
       },
     );
   }

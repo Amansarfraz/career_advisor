@@ -230,7 +230,14 @@ import 'career_details_screen.dart';
 import '../main.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+  final bool isDark;
+  final Function(bool) onToggle;
+
+  SettingScreen({
+    required this.isDark,
+    required this.onToggle,
+  }); //class SettingScreen extends StatelessWidget {
+  //const SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
