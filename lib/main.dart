@@ -72,7 +72,6 @@
 //     );
 //   }
 // }
-
 import 'package:flutter/material.dart';
 import 'screens/setting_screen.dart';
 import 'screens/splash_screen.dart';
@@ -109,34 +108,31 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
       ),
-
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-
       themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
-
-      initialRoute: '/',
+      home: const SplashScreen(),
       routes: {
-        '/': (context) => const SplashScreen(),
         '/get_started_screen': (context) => const GetStartedScreen(),
         '/login_screen': (context) => const LoginScreen(),
         '/career_assessment_screen': (context) =>
             const CareerAssessmentScreen(),
         '/career_recommendation_screen': (context) =>
-            const CareerAssessmentScreen(),
+            const CareerRecommendationScreen(
+              matchPercentage: 85,
+              careerName: "Software Engineer",
+              shortExplanation: "Based on your answers this career suits you.",
+            ),
         '/career_details_screen': (context) =>
             const CareerDetailsScreen(careerName: 'Software Engineer'),
-        '/setting_screen': (context) => SettingScreen(
-          isDark: MyApp.of(context)!.isDarkMode,
-          onToggle: MyApp.of(context)!.toggleTheme,
-        ),
+        '/setting_screen': (context) =>
+            SettingScreen(isDark: isDarkMode, onToggle: toggleTheme),
       },
     );
   }
