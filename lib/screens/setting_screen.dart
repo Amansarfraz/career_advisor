@@ -180,7 +180,7 @@ class SettingScreen extends StatelessWidget {
 
               child: Padding(
                 padding: const EdgeInsets.all(25),
-                child: Image.asset("assets/logo.png"),
+                child: Image.asset("assets/images/logo.png"),
               ),
             ),
 
