@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'career_details_screen.dart';
+import 'career_details_screen.dart';
 import '../main.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -12,11 +12,23 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xff1E3A8A),
         title: Text("Setting"),
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    const CareerDetailsScreen(careerName: 'Software Engineer'),
+              ),
+            );
+          },
+        ),
       ),
 
+      /// 👇 open CareerAssessmentScreen
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -80,7 +92,7 @@ class SettingScreen extends StatelessWidget {
 
                 child: Row(
                   children: [
-                    Icon(Icons.info, color: Colors.blue),
+                    Icon(Icons.info, color: Color(0xff1E3A8A)),
 
                     SizedBox(width: 12),
 
@@ -163,7 +175,7 @@ class SettingScreen extends StatelessWidget {
               width: 120,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.blue,
+                color: Color(0xff1E3A8A),
               ),
 
               child: Padding(
