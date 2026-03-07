@@ -17,7 +17,7 @@ class SettingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
-        backgroundColor: const Color(0xff1E3A8A),
+        backgroundColor: const Color(0xFF3B82F6),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -158,7 +158,7 @@ class SettingScreen extends StatelessWidget {
               width: 120,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xff1E3A8A),
+                color: Color(0xFF3B82F6),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(25),
