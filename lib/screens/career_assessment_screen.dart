@@ -1,5 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'career_recommendation_screen.dart';
+// import 'get_started_screen.dart';
 
 // class CareerAssessmentScreen extends StatefulWidget {
 //   const CareerAssessmentScreen({super.key});
@@ -12,7 +13,6 @@
 //   int currentQuestion = 0;
 //   int? selectedOption;
 
-//   // Stores selected option index for each question
 //   final List<int?> userAnswers = List.filled(10, null);
 
 //   final List<Map<String, dynamic>> questions = [
@@ -25,7 +25,6 @@
 //         "Organizing data or checking records",
 //       ],
 //       "icons": [Icons.devices, Icons.brush, Icons.people, Icons.analytics],
-//       // Option index 0 = Tech, 1 = Design, 2 = Social, 3 = Data
 //     },
 //     {
 //       "question": "What kind of problems do you enjoy solving the most?",
@@ -144,17 +143,6 @@
 //     },
 //   ];
 
-//   // ─── CAREER SCORING LOGIC ──────────────────────────────────────────────────
-//   //
-//   // Each question has 4 options mapped to career categories:
-//   //   Index 0 → Tech       (Software Engineer)
-//   //   Index 1 → Design     (UI/UX Designer)
-//   //   Index 2 → Social     (HR Manager / Counselor)
-//   //   Index 3 → Data/Biz   (Data Analyst / Business Analyst)
-//   //
-//   // We tally scores per category, then pick the winner.
-//   // Match % = (winner score / total questions) * 100, scaled to 60–99 range.
-
 //   Map<String, dynamic> calculateCareer() {
 //     Map<String, int> scores = {'tech': 0, 'design': 0, 'social': 0, 'data': 0};
 
@@ -167,7 +155,6 @@
 //       if (ans == 3) scores['data'] = scores['data']! + 1;
 //     }
 
-//     // Find highest scoring category
 //     String topCategory = scores.entries
 //         .reduce((a, b) => a.value >= b.value ? a : b)
 //         .key;
@@ -175,43 +162,29 @@
 //     int topScore = scores[topCategory]!;
 //     int totalQuestions = questions.length;
 
-//     // Scale match percentage: minimum 60%, maximum 97%
 //     int matchPercent = 60 + ((topScore / totalQuestions) * 37).round();
 //     matchPercent = matchPercent.clamp(60, 97);
 
-//     // Career details per category
 //     final Map<String, Map<String, String>> careerMap = {
 //       'tech': {
 //         'name': 'Software Engineer',
 //         'explanation':
-//             'You love technology, logical thinking, and building things. '
-//             'Your answers show a strong passion for coding, innovation, and working with systems. '
-//             'Software Engineering is the perfect fit — you will thrive in developing apps, '
-//             'solving complex technical problems, and creating digital solutions.',
+//             'You love technology, logical thinking, and building things.',
 //       },
 //       'design': {
 //         'name': 'UI/UX Designer',
 //         'explanation':
-//             'Your creative mind and strong visual imagination set you apart. '
-//             'You love sketching, designing, and making things look beautiful and easy to use. '
-//             'A career in UI/UX Design will let you turn ideas into stunning digital experiences '
-//             'that people enjoy using every day.',
+//             'Your creative mind and visual imagination make design perfect.',
 //       },
 //       'social': {
 //         'name': 'HR Manager / Counselor',
 //         'explanation':
-//             'You are a natural people-person with great empathy and communication skills. '
-//             'You enjoy helping others, resolving conflicts, and understanding human behavior. '
-//             'A career in HR or Counseling will allow you to guide, support, '
-//             'and positively impact the lives of people around you.',
+//             'You enjoy helping people and understanding human behavior.',
 //       },
 //       'data': {
 //         'name': 'Data / Business Analyst',
 //         'explanation':
-//             'You have a sharp analytical mind and love working with numbers, data, and patterns. '
-//             'Your organized approach and business-oriented thinking make you ideal for '
-//             'Data or Business Analysis — where you will turn raw data into valuable insights '
-//             'that drive smart decisions for organizations.',
+//             'You enjoy working with numbers, patterns, and data analysis.',
 //       },
 //     };
 
@@ -225,7 +198,6 @@
 //   void nextQuestion() {
 //     if (selectedOption == null) return;
 
-//     // Save this question's answer
 //     userAnswers[currentQuestion] = selectedOption;
 
 //     if (currentQuestion < questions.length - 1) {
@@ -234,7 +206,6 @@
 //         selectedOption = null;
 //       });
 //     } else {
-//       // All 10 questions answered → calculate & navigate
 //       final result = calculateCareer();
 
 //       Navigator.pushReplacement(
@@ -259,19 +230,41 @@
 //       body: SafeArea(
 //         child: Column(
 //           children: [
-//             /// HEADER
+//             /// HEADER WITH BACK ARROW
 //             Container(
 //               height: 80,
 //               width: double.infinity,
-//               alignment: Alignment.center,
 //               color: const Color(0xff3F72C8),
-//               child: const Text(
-//                 "Career Assessment",
-//                 style: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 30,
-//                   fontWeight: FontWeight.bold,
-//                 ),
+//               child: Stack(
+//                 alignment: Alignment.center,
+//                 children: [
+//                   Positioned(
+//                     left: 10,
+//                     child: IconButton(
+//                       icon: const Icon(
+//                         Icons.arrow_back,
+//                         color: Colors.white,
+//                         size: 28,
+//                       ),
+//                       onPressed: () {
+//                         Navigator.pushReplacement(
+//                           context,
+//                           MaterialPageRoute(
+//                             builder: (context) => const GetStartedScreen(),
+//                           ),
+//                         );
+//                       },
+//                     ),
+//                   ),
+//                   const Text(
+//                     "Career Assessment",
+//                     style: TextStyle(
+//                       color: Colors.white,
+//                       fontSize: 30,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                 ],
 //               ),
 //             ),
 
@@ -643,7 +636,7 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            /// HEADER WITH BACK ARROW
+            /// HEADER
             Container(
               height: 80,
               width: double.infinity,
@@ -682,131 +675,133 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
             ),
 
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Question ${currentQuestion + 1} of 10",
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Question ${currentQuestion + 1} of 10",
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
-                    Text(
-                      "$percent%",
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff3F72C8),
+                      Text(
+                        "$percent%",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff3F72C8),
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 8),
+                      const SizedBox(height: 8),
 
-                    SizedBox(
-                      width: 380,
-                      child: LinearProgressIndicator(
-                        value: progress,
-                        minHeight: 15,
-                        borderRadius: BorderRadius.circular(20),
-                        backgroundColor: Colors.grey.shade300,
-                        color: const Color(0xff3F72C8),
+                      SizedBox(
+                        width: 380,
+                        child: LinearProgressIndicator(
+                          value: progress,
+                          minHeight: 15,
+                          borderRadius: BorderRadius.circular(20),
+                          backgroundColor: Colors.grey.shade300,
+                          color: const Color(0xff3F72C8),
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 30),
+                      const SizedBox(height: 30),
 
-                    Text(
-                      questions[currentQuestion]["question"],
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                      Text(
+                        questions[currentQuestion]["question"],
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 30),
+                      const SizedBox(height: 30),
 
-                    ...List.generate(4, (index) {
-                      bool isSelected = selectedOption == index;
+                      ...List.generate(4, (index) {
+                        bool isSelected = selectedOption == index;
 
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedOption = index;
-                          });
-                        },
-                        child: Container(
-                          height: 70,
-                          width: 380,
-                          margin: const EdgeInsets.only(bottom: 14),
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(14),
-                            border: Border.all(color: Colors.blue),
-                            color: isSelected
-                                ? Colors.blue.shade50
-                                : Colors.white,
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                questions[currentQuestion]["icons"][index],
-                                color: const Color(0xff3F72C8),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Text(
-                                  questions[currentQuestion]["options"][index],
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedOption = index;
+                            });
+                          },
+                          child: Container(
+                            height: 70,
+                            width: 380,
+                            margin: const EdgeInsets.only(bottom: 14),
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              border: Border.all(color: Colors.blue),
+                              color: isSelected
+                                  ? Colors.blue.shade50
+                                  : Colors.white,
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  questions[currentQuestion]["icons"][index],
+                                  color: const Color(0xff3F72C8),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Text(
+                                    questions[currentQuestion]["options"][index],
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              if (isSelected)
-                                const Icon(
-                                  Icons.check_circle,
-                                  color: Color(0xff3F72C8),
-                                ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-
-                    const Spacer(),
-
-                    Center(
-                      child: SizedBox(
-                        width: 368,
-                        height: 67,
-                        child: ElevatedButton(
-                          onPressed: nextQuestion,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff3F72C8),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40),
+                                if (isSelected)
+                                  const Icon(
+                                    Icons.check_circle,
+                                    color: Color(0xff3F72C8),
+                                  ),
+                              ],
                             ),
                           ),
-                          child: const Text(
-                            "Next Question",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                        );
+                      }),
+
+                      const SizedBox(height: 30),
+
+                      Center(
+                        child: SizedBox(
+                          width: 368,
+                          height: 67,
+                          child: ElevatedButton(
+                            onPressed: nextQuestion,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xff3F72C8),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                            ),
+                            child: const Text(
+                              "Next Question",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
 
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             ),
