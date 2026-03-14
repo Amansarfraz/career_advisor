@@ -503,6 +503,7 @@
 //     );
 //   }
 // }
+import 'package:career_advisor/screens/career_recommendation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:career_advisor/screens/setting_screen.dart';
 import '../main.dart'; // Make sure this path points correctly to your main.dart
@@ -717,11 +718,33 @@ class CareerDetailsScreen extends StatelessWidget {
                       size: 26,
                     ),
                     onPressed: () {
-                      Navigator.pop(
+                      Navigator.pushReplacement(
                         context,
-                      ); // ye bas previous screen par le jata hai
+                        MaterialPageRoute(
+                          builder: (context) => CareerRecommendationScreen(
+                            matchPercentage:
+                                75, // apna dynamic % ya static value
+                            careerName:
+                                careerName, // ye CareerDetailsScreen ka careerName variable
+                            shortExplanation:
+                                "This career matches your profile.", // short explanation
+                          ),
+                        ),
+                      );
                     },
                   ),
+                  // IconButton(
+                  //   icon: const Icon(
+                  //     Icons.arrow_back,
+                  //     color: Colors.white,
+                  //     size: 26,
+                  //   ),
+                  //   onPressed: () {
+                  //     Navigator.pop(
+                  //       context,
+                  //     ); // ye bas previous screen par le jata hai
+                  //   },
+                  // ),
                   // IconButton(
                   //   icon: const Icon(
                   //     Icons.arrow_back,
