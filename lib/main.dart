@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
               shortExplanation: "Based on your answers this career suits you.",
             ),
         '/career_details_screen': (context) =>
-            const CareerDetailsScreen(careerName: "Software Engineer"),
+            const CareerDetailsScreen(careerName: " widget.careerName"),
         '/setting_screen': (context) => SettingScreen(
           isDark: MyApp.of(context)!.isDarkMode,
           onToggle: MyApp.of(context)!.toggleTheme,

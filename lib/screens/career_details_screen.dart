@@ -214,16 +214,15 @@ class CareerDetailsScreen extends StatelessWidget {
                       size: 26,
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CareerRecommendationScreen(
-                            matchPercentage: 85,
-                            careerName: "Software Engineer",
-                            shortExplanation:
-                                "Based on your answers this career suits you.",
-                          ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 26,
                         ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       );
                     },
                   ),
