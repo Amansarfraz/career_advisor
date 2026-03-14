@@ -503,12 +503,11 @@
 //     );
 //   }
 // }
-
-import 'package:career_advisor/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
-import 'career_recommendation_screen.dart';
-import '../main.dart'; // make sure the path points correctly to your main.dart
+import 'package:career_advisor/screens/setting_screen.dart';
+import '../main.dart'; // Make sure this path points correctly to your main.dart
 
+// ─── HARDCODED CAREER DATA ─────────────────────────────────────────────
 class _CareerData {
   final String name;
   final IconData icon;
@@ -528,18 +527,154 @@ class _CareerData {
 }
 
 final Map<String, _CareerData> _careerDatabase = {
-  // … same as your original _careerDatabase …
+  'Software Engineer': _CareerData(
+    name: 'Software Engineer',
+    icon: Icons.code,
+    requiredSkills: 'Java, Python, SQL, Data Structures, OOP, Problem Solving',
+    educationPath: 'Computer Science Degree or Bootcamp',
+    salaryRange: '\$70,000 to \$120,000+',
+    roadmap: [
+      {
+        'title': '1. Fundamentals',
+        'desc': 'Programming basics, DSA, OOP, and core CS concepts.',
+      },
+      {
+        'title': '2. Projects & Practice',
+        'desc': 'Build real-world projects and improve problem-solving skills.',
+      },
+      {
+        'title': '3. Specialization & Growth',
+        'desc': 'Choose a domain and continuously upgrade your skills.',
+      },
+      {
+        'title': '4. Internship & Job Hunt',
+        'desc':
+            'Apply for internships, build GitHub portfolio, contribute to open-source projects.',
+      },
+      {
+        'title': '5. Senior & Leadership',
+        'desc':
+            'Lead teams, mentor juniors, move into architecture or management roles.',
+      },
+    ],
+  ),
+  'UI/UX Designer': _CareerData(
+    name: 'UI/UX Designer',
+    icon: Icons.brush,
+    requiredSkills:
+        'Figma, Adobe XD, Prototyping, User Research, Typography, Color Theory',
+    educationPath: 'Graphic Design Degree or Online Courses + Portfolio',
+    salaryRange: '\$55,000 to \$100,000+',
+    roadmap: [
+      {
+        'title': '1. Design Basics',
+        'desc':
+            'Learn color theory, typography, layout principles, and visual hierarchy.',
+      },
+      {
+        'title': '2. Master Design Tools',
+        'desc':
+            'Get proficient in Figma and Adobe XD for wireframing and prototyping.',
+      },
+      {
+        'title': '3. User Research',
+        'desc':
+            'Study user behavior, conduct interviews, and create personas and journey maps.',
+      },
+      {
+        'title': '4. Portfolio Building',
+        'desc':
+            'Design 3–5 real case studies showing your design thinking and problem-solving process.',
+      },
+      {
+        'title': '5. Specialize & Grow',
+        'desc':
+            'Focus on Mobile UX, Design Systems, or Motion Design to stand out in the market.',
+      },
+    ],
+  ),
+  'HR Manager / Counselor': _CareerData(
+    name: 'HR Manager / Counselor',
+    icon: Icons.people,
+    requiredSkills:
+        'Communication, Conflict Resolution, Empathy, Recruitment, Labor Law, Leadership',
+    educationPath:
+        'Human Resource Management Degree or Psychology Degree or MBA with HR Specialization',
+    salaryRange: '\$50,000 to \$90,000+',
+    roadmap: [
+      {
+        'title': '1. People Skills',
+        'desc':
+            'Develop strong communication, empathy, and active listening skills.',
+      },
+      {
+        'title': '2. HR Fundamentals',
+        'desc':
+            'Learn recruitment, onboarding, payroll, and performance management basics.',
+      },
+      {
+        'title': '3. Labor Laws & Compliance',
+        'desc':
+            'Understand employment laws, workplace rights, and organizational policies.',
+      },
+      {
+        'title': '4. HR Tools & Software',
+        'desc':
+            'Get proficient in HRMS tools like BambooHR, SAP SuccessFactors, or Workday.',
+      },
+      {
+        'title': '5. Leadership & Strategy',
+        'desc':
+            'Move into strategic HR roles — talent management, culture building, and C-suite advisory.',
+      },
+    ],
+  ),
+  'Data / Business Analyst': _CareerData(
+    name: 'Data / Business Analyst',
+    icon: Icons.analytics,
+    requiredSkills:
+        'Excel, SQL, Python, Power BI, Statistics, Critical Thinking, Data Visualization',
+    educationPath:
+        'Statistics / Mathematics Degree or CS Degree or Business + Analytics Courses',
+    salaryRange: '\$60,000 to \$110,000+',
+    roadmap: [
+      {
+        'title': '1. Data Foundations',
+        'desc':
+            'Learn Excel, SQL, and basic statistics for collecting and organizing data.',
+      },
+      {
+        'title': '2. Data Visualization',
+        'desc':
+            'Master Power BI or Tableau to build dashboards and present insights clearly.',
+      },
+      {
+        'title': '3. Programming for Data',
+        'desc':
+            'Learn Python (Pandas, NumPy) for data cleaning, analysis, and automation.',
+      },
+      {
+        'title': '4. Business Acumen',
+        'desc':
+            'Understand business processes, KPIs, and how data drives decision-making.',
+      },
+      {
+        'title': '5. Advanced Analytics',
+        'desc':
+            'Explore machine learning basics, predictive modeling, and strategic reporting.',
+      },
+    ],
+  ),
 };
 
+// ─── CAREER DETAILS SCREEN ─────────────────────────────────────────────
 class CareerDetailsScreen extends StatelessWidget {
   final String careerName;
-
   const CareerDetailsScreen({super.key, required this.careerName});
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final career = _careerDatabase[careerName];
 
     if (career == null) {
@@ -567,10 +702,10 @@ class CareerDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // ─── HEADER ──────────────
+            /// HEADER
             Container(
-              width: double.infinity,
               height: 80,
+              width: double.infinity,
               color: const Color(0xFF3F72C8),
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Row(
@@ -583,11 +718,11 @@ class CareerDetailsScreen extends StatelessWidget {
                     ),
                     onPressed: () => Navigator.pop(context),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Text(
                       "Career Details",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -616,22 +751,21 @@ class CareerDetailsScreen extends StatelessWidget {
               ),
             ),
 
-            // ── BODY ────────────────
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// Title Row
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
                           width: 58,
                           height: 58,
                           decoration: BoxDecoration(
                             color: isDark
-                                ? const Color(0xFF1e1e1e)
+                                ? Colors.grey[800]
                                 : const Color(0xFFEEF2FB),
                             borderRadius: BorderRadius.circular(14),
                           ),
@@ -681,11 +815,12 @@ class CareerDetailsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
 
+                    // Roadmap
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: isDark ? const Color(0xFF1e1e1e) : Colors.white,
+                        color: isDark ? Colors.grey[900] : Colors.white,
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(
                           color: const Color(0xFF3F72C8).withOpacity(0.3),
@@ -696,17 +831,19 @@ class CareerDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            children: [
-                              const Icon(Icons.route, color: Color(0xFF3F72C8)),
-                              const SizedBox(width: 10),
+                            children: const [
+                              Icon(
+                                Icons.route,
+                                color: Color(0xFF3F72C8),
+                                size: 26,
+                              ),
+                              SizedBox(width: 10),
                               Text(
                                 "Step-by-step Roadmap:",
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
-                                  color: isDark
-                                      ? Colors.white
-                                      : const Color(0xFF1a2a4a),
+                                  color: Color(0xFF1a2a4a),
                                 ),
                               ),
                             ],
@@ -757,7 +894,7 @@ class CareerDetailsScreen extends StatelessWidget {
   }
 }
 
-// ─── REUSABLE INFO CARD ─────────────────────────────
+// ─── INFO CARD ─────────────────────────────────────────────────────────────
 class _InfoCard extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -777,7 +914,7 @@ class _InfoCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1e1e1e) : Colors.white,
+        color: isDark ? Colors.grey[900] : Colors.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
           color: const Color(0xFF3F72C8).withOpacity(0.3),
@@ -791,7 +928,7 @@ class _InfoCard extends StatelessWidget {
             width: 42,
             height: 42,
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF2a2a2a) : const Color(0xFFEEF2FB),
+              color: isDark ? Colors.grey[800] : const Color(0xFFEEF2FB),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(icon, color: const Color(0xFF3F72C8), size: 22),
