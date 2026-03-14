@@ -1,31 +1,26 @@
-from flask import Flask, jsonify
-from flask_cors import CORS
-from flasgger import Swagger
-from config import Config
-from utils.db import db, career_collection, users_collection, get_db, get_collection
-from routes.career_routes import career_bp
-from routes.auth_routes import auth_bp
-from routes.settings_routes import settings_bp
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from routes.career_routes import router as career_router
+from routes.auth_routes import router as auth_router
+from routes.settings_routes import router as settings_router
 
-app = Flask(__name__)
-app.config.from_object(Config)
+app = FastAPI(title="Career Advisor API", version="1.0.0")
 
 # Enable CORS
-CORS(app)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# Enable Swagger UI
-swagger = Swagger(app)
+# Register routers
+app.include_router(career_router, prefix="/api/careers", tags=["Careers"])
+app.include_router(auth_router, prefix="/api/auth", tags=["Auth"])
+app.include_router(settings_router, prefix="/api/settings", tags=["Settings"])
 
-# Register Blueprints
-app.register_blueprint(career_bp, url_prefix="/api/careers")
-app.register_blueprint(auth_bp, url_prefix="/api/auth")
-app.register_blueprint(settings_bp, url_prefix="/api/settings")
-
-# Simple test route
-@app.route("/")
-def index():
-    return jsonify({"message": "Career Advisor Backend is running!"})
-
-# Run the Flask app
-if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+# Root route
+@app.get("/")
+async def root():
+    return {"message": "Career Advisor Backend is running!"}

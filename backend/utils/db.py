@@ -1,24 +1,15 @@
-# backend/utils/db.py
+# utils/db.py
 
 from pymongo import MongoClient
+from config import Config
 
-# Replace with your actual MongoDB URI (Atlas or local)
-MONGO_URI = "mongodb://localhost:27017/"
+client = MongoClient(Config.MONGO_URI)
+db = client[Config.DB_NAME]
 
-# Create MongoDB client
-client = MongoClient(MONGO_URI)
-
-# Database object
-db = client["career_advisor_db"]
-
-# Collections
 career_collection = db["careers"]
 users_collection = db["users"]
+settings_collection = db["settings"]
 
-# Helper function to get the database
-def get_db():
-    return db
-
-# Helper function to get any collection by name
-def get_collection(name):
+# Generic function to get any collection
+def get_collection(name: str):
     return db[name]

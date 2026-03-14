@@ -1,29 +1,17 @@
-# backend/routes/auth_routes.py
+# routes/auth_routes.py
 
-from flask import Blueprint, request, jsonify
+from fastapi import APIRouter
 
-auth_bp = Blueprint("auth_bp", __name__, url_prefix="/api/auth")
+router = APIRouter()
 
-# Dummy in-memory users (replace with DB in real app)
-users = {
-    "admin@example.com": {"password": "admin123", "name": "Admin"}
-}
+@router.post("/login", summary="User login", description="Authenticate user")
+async def login(username: str, password: str):
+    # Placeholder example
+    if username == "admin" and password == "1234":
+        return {"message": "Login successful", "token": "fake-jwt-token"}
+    return {"error": "Invalid credentials"}
 
-
-@auth_bp.route("/login", methods=["POST"])
-def login():
-    data = request.json
-    email = data.get("email")
-    password = data.get("password")
-
-    user = users.get(email)
-    if user and user["password"] == password:
-        # In real app, generate JWT token
-        return jsonify({"message": "Login successful", "user": {"email": email, "name": user["name"]}}), 200
-    return jsonify({"error": "Invalid credentials"}), 401
-
-
-@auth_bp.route("/logout", methods=["POST"])
-def logout():
-    # In real app, handle token invalidation
-    return jsonify({"message": "Logged out successfully"}), 200
+@router.post("/register", summary="User register", description="Register new user")
+async def register(username: str, password: str):
+    # Placeholder: just return success
+    return {"message": f"User {username} registered successfully"}
