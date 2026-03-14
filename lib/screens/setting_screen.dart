@@ -202,6 +202,7 @@
 // }
 
 import 'package:career_advisor/screens/about_app_screen.dart';
+import 'package:career_advisor/screens/logout_screen.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'career_details_screen.dart';
@@ -353,13 +354,18 @@ class SettingScreen extends StatelessWidget {
                     ),
                   ),
 
-                  const Icon(Icons.arrow_forward_ios, size: 16),
-
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LogoutScreen(),
+                        ),
+                      );
+                    },
+                  ), //const Icon(Icons.arrow_forward_ios, size: 16),
                   /// YAHAN NAVIGATOR LAGANA HAI AGAR LOGOUT SCREEN OPEN KARNA HO
-                  /// Navigator.push(
-                  ///   context,
-                  ///   MaterialPageRoute(builder: (context) => const LogoutScreen()),
-                  /// );
                 ],
               ),
             ),
