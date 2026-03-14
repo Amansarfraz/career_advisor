@@ -716,8 +716,20 @@ class CareerDetailsScreen extends StatelessWidget {
                       color: Colors.white,
                       size: 26,
                     ),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () {
+                      Navigator.pop(
+                        context,
+                      ); // ye bas previous screen par le jata hai
+                    },
                   ),
+                  // IconButton(
+                  //   icon: const Icon(
+                  //     Icons.arrow_back,
+                  //     color: Colors.white,
+                  //     size: 26,
+                  //   ),
+                  //   onPressed: () => Navigator.pop(context),
+                  // ),
                   const Expanded(
                     child: Text(
                       "Career Details",
