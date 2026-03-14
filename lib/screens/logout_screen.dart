@@ -50,7 +50,7 @@ class _LogoutScreenState extends State<LogoutScreen>
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2209B4),
+        backgroundColor: const Color(0xFF3F72C8),
         centerTitle: true,
         title: Text(
           "Logout",
@@ -77,7 +77,7 @@ class _LogoutScreenState extends State<LogoutScreen>
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF2209B4), Color(0xFF6A4CFF)],
+                        colors: [Color(0xFF3F72C8), Color(0xFF6A4CFF)],
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -136,7 +136,7 @@ class _LogoutScreenState extends State<LogoutScreen>
                       /// LOGOUT BUTTON
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF2209B4),
+                          backgroundColor: const Color(0xFF3F72C8),
                           padding: const EdgeInsets.symmetric(
                             horizontal: 50,
                             vertical: 14,
@@ -188,7 +188,7 @@ class _LogoutScreenState extends State<LogoutScreen>
                 Column(
                   children: [
                     Text(
-                      "Guiding Your Future, Step\n by Step",
+                      "Guiding Your Future, Step\n   by Step",
                       style: GoogleFonts.poppins(
                         color: isDark ? Colors.white70 : Colors.black,
                         fontSize: 13,
