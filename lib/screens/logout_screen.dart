@@ -188,7 +188,8 @@ class _LogoutScreenState extends State<LogoutScreen>
                 Column(
                   children: [
                     Text(
-                      "Guiding Your Future, Step\n   by Step",
+                      "Guiding Your Future, Step\n    "
+                      "  by Step",
                       style: GoogleFonts.poppins(
                         color: isDark ? Colors.white70 : Colors.black,
                         fontSize: 13,
