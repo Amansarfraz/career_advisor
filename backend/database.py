@@ -3,7 +3,7 @@ from config import MONGO_URL, DATABASE_NAME
 
 client = MongoClient(MONGO_URL)
 
-db = client[DATABASE_NAME]
+db = client["career_advisor_db"]
 
 users_collection = db["users"]
 assessment_collection = db["assessments"]
