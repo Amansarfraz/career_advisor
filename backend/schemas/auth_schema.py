@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+#from schemas.auth_schema import LoginRequest, LoginResponse
 
 class LoginRequest(BaseModel):
     email: str

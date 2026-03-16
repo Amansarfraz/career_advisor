@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from schemas.assessment_schema import AssessmentRequest
 from database import assessment_collection
 
+
+
 router = APIRouter()
 
 @router.post("/career-assessment")
