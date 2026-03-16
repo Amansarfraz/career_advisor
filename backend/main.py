@@ -7,9 +7,21 @@ sys.path.append(os.path.dirname(__file__))
 from routes.auth_routes import router as auth_router
 from routes.assessment_routes import router as assessment_router
 from routes.career_routes import router as career_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# CORS setup
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include routers
 app.include_router(auth_router)
 app.include_router(assessment_router)
 app.include_router(career_router)
