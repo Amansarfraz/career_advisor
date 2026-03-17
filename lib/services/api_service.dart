@@ -8,9 +8,8 @@ class ApiService {
 
   // 🔹 Fake login method
   Future<bool> login(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 1)); // simulate network delay
-    // Accept one dummy user for testing
-    return email == "test@example.com" && password == "123456";
+    await Future.delayed(const Duration(seconds: 1));
+    return true; // Accept everything for testing
   }
 
   // 🔹 Fake career assessment submission
