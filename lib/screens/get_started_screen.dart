@@ -157,9 +157,7 @@ class GetStartedScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

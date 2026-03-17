@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (context) => const SplashScreen(),
         '/get_started_screen': (context) => const GetStartedScreen(),
-        '/login_screen': (context) => const LoginScreen(),
+        '/login_screen': (context) => LoginScreen(),
         '/career_assessment_screen': (context) =>
             const CareerAssessmentScreen(),
         '/career_recommendation_screen': (context) =>
