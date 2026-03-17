@@ -112,8 +112,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
-import 'career_assessment_screen.dart';
+import 'career_assessment_screen.dart'; // Your assessment screen
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -139,11 +138,12 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 120),
 
+              // Logo
               Image.asset("assets/images/logo.png", height: 220),
 
               const SizedBox(height: 40),
 
-              /// EMAIL
+              // Email Field
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30),
                 decoration: BoxDecoration(
@@ -162,7 +162,7 @@ class LoginScreen extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              /// PASSWORD
+              // Password Field
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30),
                 decoration: BoxDecoration(
@@ -182,13 +182,24 @@ class LoginScreen extends StatelessWidget {
 
               const SizedBox(height: 35),
 
-              /// LOGIN BUTTON
+              // Login Button
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 229, 230, 233),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 120,
+                    vertical: 15,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
                 onPressed: () async {
-                  var success = await ApiService().login(
-                    emailController.text,
-                    passwordController.text,
-                  );
+                  // 🔹 Simulate login delay
+                  await Future.delayed(const Duration(seconds: 1));
+
+                  // 🔹 Dummy login always succeeds
+                  bool success = true;
 
                   if (success) {
                     Navigator.pushReplacement(
@@ -203,7 +214,7 @@ class LoginScreen extends StatelessWidget {
                     );
                   }
                 },
-                child: const Text("Login"),
+                child: const Text("Login", style: TextStyle(fontSize: 20)),
               ),
             ],
           ),
