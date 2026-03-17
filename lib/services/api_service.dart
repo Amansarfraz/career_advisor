@@ -1,67 +1,41 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+//mport 'dart:convert';
+// import 'package:http/http.dart' as http;
 
 class ApiService {
-  // Base URL for your backend
+  // Base URL for your backend (not used yet, kept for future)
   static const String baseUrl = "http://127.0.0.1:8000";
-  // For Android emulator, use:  static const String baseUrl = "http://10.0.2.2:8000";
+  // For Android emulator, use: static const String baseUrl = "http://10.0.2.2:8000";
 
-  // Login method
+  // 🔹 Fake login method
   Future<bool> login(String email, String password) async {
-    try {
-      var res = await http.post(
-        Uri.parse("$baseUrl/auth/login"),
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode({"email": email, "password": password}),
-      );
-
-      if (res.statusCode == 200) {
-        return true;
-      } else {
-        print("Login failed: ${res.statusCode}, ${res.body}");
-        return false;
-      }
-    } catch (e) {
-      print("Login error: $e");
-      return false;
-    }
+    await Future.delayed(const Duration(seconds: 1)); // simulate network delay
+    // Accept one dummy user for testing
+    return email == "test@example.com" && password == "123456";
   }
 
-  // Submit career assessment
-  Future<Map<String, dynamic>?> submitAssessment(List<int?> answers) async {
-    try {
-      var res = await http.post(
-        Uri.parse("$baseUrl/career/assess"),
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode({"answers": answers}),
-      );
+  // 🔹 Fake career assessment submission
+  Future<Map<String, dynamic>> submitAssessment(List<int?> answers) async {
+    await Future.delayed(const Duration(seconds: 1)); // simulate network delay
 
-      if (res.statusCode == 200) {
-        return jsonDecode(res.body);
-      } else {
-        print("Assessment submission failed: ${res.statusCode}, ${res.body}");
-        return null;
-      }
-    } catch (e) {
-      print("Assessment submission error: $e");
-      return null;
-    }
+    // Return dummy career assessment result
+    return {
+      "matchPercent": 85,
+      "careerName": "Software Engineer",
+      "explanation": "You enjoy problem solving and working with technology.",
+    };
   }
 
-  // Get career details by name
-  Future<Map<String, dynamic>?> getCareerDetails(String name) async {
-    try {
-      var res = await http.get(Uri.parse("$baseUrl/career/details/$name"));
+  // 🔹 Fake get career details
+  Future<Map<String, dynamic>> getCareerDetails(String name) async {
+    await Future.delayed(
+      const Duration(milliseconds: 500),
+    ); // simulate network delay
 
-      if (res.statusCode == 200) {
-        return jsonDecode(res.body);
-      } else {
-        print("Get career details failed: ${res.statusCode}, ${res.body}");
-        return null;
-      }
-    } catch (e) {
-      print("Get career details error: $e");
-      return null;
-    }
+    return {
+      "careerName": name,
+      "description": "This is a sample career description for $name.",
+      "averageSalary": "\$80,000",
+      "requiredSkills": ["Problem Solving", "Coding", "Teamwork"],
+    };
   }
 }
