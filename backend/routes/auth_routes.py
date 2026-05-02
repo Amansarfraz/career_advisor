@@ -1,3 +1,4 @@
+
 # from fastapi import APIRouter
 # from backend.database import user_collection
 # from backend.schemas.auth_schema import LoginRequest
@@ -6,22 +7,24 @@
 
 # @router.post("/login")
 # def login_user(data: LoginRequest):
+
 #     user = user_collection.find_one({
-#         "email": data.email,
-#         "password": data.password
+#         "email": data.email.strip(),
+#         "password": data.password.strip()
 #     })
 
 #     if not user:
-#         return {"message": "Invalid email or password"}
+#         return {"success": False, "message": "Invalid credentials"}
 
 #     return {
-#         "message": "Login successful",
+#         "success": True,
 #         "user_id": str(user["_id"])
 #     }
 
+
 # @router.post("/logout")
 # def logout_user():
-#     return {"message": "User logged out successfully"}
+#     return {"success": True, "message": "Logged out"}
 from fastapi import APIRouter
 from backend.database import user_collection
 from backend.schemas.auth_schema import LoginRequest
@@ -31,12 +34,15 @@ router = APIRouter()
 @router.post("/login")
 def login_user(data: LoginRequest):
 
-    user = user_collection.find_one({
-        "email": data.email.strip(),
-        "password": data.password.strip()
-    })
+    email = data.email.strip()
+    password = data.password.strip()
+
+    user = user_collection.find_one({"email": email})
 
     if not user:
+        return {"success": False, "message": "Invalid credentials"}
+
+    if str(user["password"]).strip() != password:
         return {"success": False, "message": "Invalid credentials"}
 
     return {
