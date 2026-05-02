@@ -1,15 +1,12 @@
 # from fastapi import APIRouter
-# #from database import users_collection
-# #from schemas.auth_schema import LoginRequest
-# from backend.database import users_collection
-# from backend.schemas.auth_schema import UserLogin
+# from backend.database import user_collection
+# from backend.schemas.auth_schema import LoginRequest
 
 # router = APIRouter()
 
 # @router.post("/login")
 # def login_user(data: LoginRequest):
-
-#     user = users_collection.find_one({
+#     user = user_collection.find_one({
 #         "email": data.email,
 #         "password": data.password
 #     })
@@ -22,31 +19,32 @@
 #         "user_id": str(user["_id"])
 #     }
 
-
 # @router.post("/logout")
 # def logout_user():
 #     return {"message": "User logged out successfully"}
 from fastapi import APIRouter
 from backend.database import user_collection
-from backend.schemas.auth_schema import UserLogin
+from backend.schemas.auth_schema import LoginRequest
 
 router = APIRouter()
 
 @router.post("/login")
-def login_user(data: UserLogin):
+def login_user(data: LoginRequest):
+
     user = user_collection.find_one({
-        "email": data.email,
-        "password": data.password
+        "email": data.email.strip(),
+        "password": data.password.strip()
     })
 
     if not user:
-        return {"message": "Invalid email or password"}
+        return {"success": False, "message": "Invalid credentials"}
 
     return {
-        "message": "Login successful",
+        "success": True,
         "user_id": str(user["_id"])
     }
 
+
 @router.post("/logout")
 def logout_user():
-    return {"message": "User logged out successfully"}
+    return {"success": True, "message": "Logged out"}

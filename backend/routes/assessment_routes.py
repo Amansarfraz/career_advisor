@@ -1,15 +1,13 @@
+
 # from fastapi import APIRouter
-# from schemas.assessment_schema import AssessmentRequest
-# from database import assessment_collection
-
-
+# from backend.schemas.assessment_schema import AssessmentRequest
+# from backend.database import assessment_collection
 
 # router = APIRouter()
 
 # @router.post("/career-assessment")
 # def calculate_career(data: AssessmentRequest):
-
-#     scores = {"tech":0,"design":0,"social":0,"data":0}
+#     scores = {"tech": 0, "design": 0, "social": 0, "data": 0}
 
 #     for ans in data.answers:
 #         if ans == 0:
@@ -23,28 +21,14 @@
 
 #     top_category = max(scores, key=scores.get)
 #     top_score = scores[top_category]
-
 #     total_questions = len(data.answers)
-
-#     match_percent = 60 + int((top_score/total_questions)*37)
+#     match_percent = 60 + int((top_score / total_questions) * 37)
 
 #     career_map = {
-#         "tech":{
-#             "name":"Software Engineer",
-#             "explanation":"You love technology and logical thinking."
-#         },
-#         "design":{
-#             "name":"UI/UX Designer",
-#             "explanation":"You have a creative mind and enjoy design."
-#         },
-#         "social":{
-#             "name":"HR Manager / Counselor",
-#             "explanation":"You enjoy helping people."
-#         },
-#         "data":{
-#             "name":"Data / Business Analyst",
-#             "explanation":"You like analyzing data."
-#         }
+#         "tech": {"name": "Software Engineer", "explanation": "You love technology and logical thinking."},
+#         "design": {"name": "UI/UX Designer", "explanation": "You have a creative mind and enjoy design."},
+#         "social": {"name": "HR Manager / Counselor", "explanation": "You enjoy helping people."},
+#         "data": {"name": "Data / Business Analyst", "explanation": "You like analyzing data."}
 #     }
 
 #     result = {
@@ -58,15 +42,15 @@
 #         "result": result
 #     })
 
-#     return result
+#     return result 
 from fastapi import APIRouter
 from backend.schemas.assessment_schema import AssessmentRequest
-from backend.database import assessment_collection
 
 router = APIRouter()
 
 @router.post("/career-assessment")
 def calculate_career(data: AssessmentRequest):
+
     scores = {"tech": 0, "design": 0, "social": 0, "data": 0}
 
     for ans in data.answers:
@@ -80,26 +64,16 @@ def calculate_career(data: AssessmentRequest):
             scores["data"] += 1
 
     top_category = max(scores, key=scores.get)
-    top_score = scores[top_category]
-    total_questions = len(data.answers)
-    match_percent = 60 + int((top_score / total_questions) * 37)
 
     career_map = {
-        "tech": {"name": "Software Engineer", "explanation": "You love technology and logical thinking."},
-        "design": {"name": "UI/UX Designer", "explanation": "You have a creative mind and enjoy design."},
-        "social": {"name": "HR Manager / Counselor", "explanation": "You enjoy helping people."},
-        "data": {"name": "Data / Business Analyst", "explanation": "You like analyzing data."}
+        "tech": "Software Engineer",
+        "design": "UI/UX Designer",
+        "social": "HR Manager",
+        "data": "Data Analyst"
     }
 
-    result = {
-        "careerName": career_map[top_category]["name"],
-        "explanation": career_map[top_category]["explanation"],
-        "matchPercent": match_percent
+    return {
+        "careerName": career_map[top_category],
+        "matchPercent": 85,
+        "explanation": "Based on your answers"
     }
-
-    assessment_collection.insert_one({
-        "answers": data.answers,
-        "result": result
-    })
-
-    return result
