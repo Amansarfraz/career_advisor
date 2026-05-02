@@ -1,4 +1,4 @@
- 
+
 # from fastapi import APIRouter
 # from backend.schemas.assessment_schema import AssessmentRequest
 
@@ -29,6 +29,7 @@
 #     }
 
 #     return {
+#         "success": True,
 #         "careerName": career_map[top_category],
 #         "matchPercent": 85,
 #         "explanation": "Based on your answers"

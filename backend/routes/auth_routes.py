@@ -8,12 +8,15 @@
 # @router.post("/login")
 # def login_user(data: LoginRequest):
 
-#     user = user_collection.find_one({
-#         "email": data.email.strip(),
-#         "password": data.password.strip()
-#     })
+#     email = data.email.strip()
+#     password = data.password.strip()
+
+#     user = user_collection.find_one({"email": email})
 
 #     if not user:
+#         return {"success": False, "message": "Invalid credentials"}
+
+#     if str(user["password"]).strip() != password:
 #         return {"success": False, "message": "Invalid credentials"}
 
 #     return {
