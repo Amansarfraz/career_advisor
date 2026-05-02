@@ -1,8 +1,124 @@
+// // import 'package:flutter/material.dart';
+// // import 'career_assessment_screen.dart';
+
+// // class LoginScreen extends StatelessWidget {
+// //   const LoginScreen({super.key});
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return Scaffold(
+// //       body: Container(
+// //         width: double.infinity,
+// //         height: double.infinity,
+// //         decoration: const BoxDecoration(
+// //           gradient: LinearGradient(
+// //             begin: Alignment.topCenter,
+// //             end: Alignment.bottomCenter,
+// //             colors: [Color(0xff1E3A8A), Color(0xff3B82F6)],
+// //           ),
+// //         ),
+
+// //         /// ✅ SCROLL ADDED HERE
+// //         child: SingleChildScrollView(
+// //           child: Column(
+// //             mainAxisAlignment: MainAxisAlignment.center,
+// //             children: [
+// //               const SizedBox(height: 120),
+
+// //               /// LOGO IMAGE
+// //               Image.asset("assets/images/logo.png", height: 220),
+
+// //               const SizedBox(height: 40),
+
+// //               /// EMAIL FIELD
+// //               Container(
+// //                 margin: const EdgeInsets.symmetric(horizontal: 30),
+// //                 decoration: BoxDecoration(
+// //                   color: const Color(0xffE5E7EB),
+// //                   borderRadius: BorderRadius.circular(30),
+// //                 ),
+// //                 child: const TextField(
+// //                   style: TextStyle(fontSize: 20),
+// //                   decoration: InputDecoration(
+// //                     border: InputBorder.none,
+// //                     prefixIcon: Icon(Icons.email),
+// //                     hintText: "Email",
+// //                     contentPadding: EdgeInsets.symmetric(vertical: 18),
+// //                     hintStyle: TextStyle(fontSize: 20),
+// //                     labelStyle: TextStyle(fontSize: 20),
+// //                   ),
+// //                 ),
+// //               ),
+
+// //               const SizedBox(height: 20),
+
+// //               /// PASSWORD FIELD
+// //               Container(
+// //                 margin: const EdgeInsets.symmetric(horizontal: 30),
+// //                 decoration: BoxDecoration(
+// //                   color: const Color(0xffE5E7EB),
+// //                   borderRadius: BorderRadius.circular(30),
+// //                 ),
+// //                 child: const TextField(
+// //                   obscureText: true,
+// //                   style: TextStyle(fontSize: 20),
+// //                   decoration: InputDecoration(
+// //                     border: InputBorder.none,
+// //                     prefixIcon: Icon(Icons.lock),
+// //                     hintText: "Password",
+// //                     contentPadding: EdgeInsets.symmetric(vertical: 18),
+// //                   ),
+// //                 ),
+// //               ),
+
+// //               const SizedBox(height: 35),
+
+// //               /// LOGIN BUTTON
+// //               ElevatedButton(
+// //                 onPressed: () {
+// //                   Navigator.pushReplacement(
+// //                     context,
+// //                     MaterialPageRoute(
+// //                       builder: (context) => const CareerAssessmentScreen(),
+// //                     ),
+// //                   );
+// //                 },
+// //                 style: ElevatedButton.styleFrom(
+// //                   backgroundColor: const Color(0xffE5E7EB),
+// //                   padding: const EdgeInsets.symmetric(
+// //                     horizontal: 60,
+// //                     vertical: 15,
+// //                   ),
+// //                   shape: RoundedRectangleBorder(
+// //                     borderRadius: BorderRadius.circular(30),
+// //                   ),
+// //                 ),
+// //                 child: const Text(
+// //                   "Login",
+// //                   style: TextStyle(
+// //                     color: Color(0xff1E3A8A),
+// //                     fontWeight: FontWeight.bold,
+// //                     fontSize: 20,
+// //                   ),
+// //                 ),
+// //               ),
+
+// //               const SizedBox(height: 50),
+// //             ],
+// //           ),
+// //         ),
+// //       ),
+// //     );
+// //   }
+// // }
 // import 'package:flutter/material.dart';
-// import 'career_assessment_screen.dart';
+// import 'career_assessment_screen.dart'; // Your assessment screen
 
 // class LoginScreen extends StatelessWidget {
-//   const LoginScreen({super.key});
+//   LoginScreen({super.key});
+
+//   final emailController = TextEditingController();
+//   final passwordController = TextEditingController();
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -17,93 +133,89 @@
 //             colors: [Color(0xff1E3A8A), Color(0xff3B82F6)],
 //           ),
 //         ),
-
-//         /// ✅ SCROLL ADDED HERE
 //         child: SingleChildScrollView(
 //           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
 //             children: [
 //               const SizedBox(height: 120),
 
-//               /// LOGO IMAGE
+//               // Logo
 //               Image.asset("assets/images/logo.png", height: 220),
 
 //               const SizedBox(height: 40),
 
-//               /// EMAIL FIELD
+//               // Email Field
 //               Container(
 //                 margin: const EdgeInsets.symmetric(horizontal: 30),
 //                 decoration: BoxDecoration(
 //                   color: const Color(0xffE5E7EB),
 //                   borderRadius: BorderRadius.circular(30),
 //                 ),
-//                 child: const TextField(
-//                   style: TextStyle(fontSize: 20),
-//                   decoration: InputDecoration(
+//                 child: TextField(
+//                   controller: emailController,
+//                   decoration: const InputDecoration(
 //                     border: InputBorder.none,
 //                     prefixIcon: Icon(Icons.email),
 //                     hintText: "Email",
-//                     contentPadding: EdgeInsets.symmetric(vertical: 18),
-//                     hintStyle: TextStyle(fontSize: 20),
-//                     labelStyle: TextStyle(fontSize: 20),
 //                   ),
 //                 ),
 //               ),
 
 //               const SizedBox(height: 20),
 
-//               /// PASSWORD FIELD
+//               // Password Field
 //               Container(
 //                 margin: const EdgeInsets.symmetric(horizontal: 30),
 //                 decoration: BoxDecoration(
 //                   color: const Color(0xffE5E7EB),
 //                   borderRadius: BorderRadius.circular(30),
 //                 ),
-//                 child: const TextField(
+//                 child: TextField(
+//                   controller: passwordController,
 //                   obscureText: true,
-//                   style: TextStyle(fontSize: 20),
-//                   decoration: InputDecoration(
+//                   decoration: const InputDecoration(
 //                     border: InputBorder.none,
 //                     prefixIcon: Icon(Icons.lock),
 //                     hintText: "Password",
-//                     contentPadding: EdgeInsets.symmetric(vertical: 18),
 //                   ),
 //                 ),
 //               ),
 
 //               const SizedBox(height: 35),
 
-//               /// LOGIN BUTTON
+//               // Login Button
 //               ElevatedButton(
-//                 onPressed: () {
-//                   Navigator.pushReplacement(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (context) => const CareerAssessmentScreen(),
-//                     ),
-//                   );
-//                 },
 //                 style: ElevatedButton.styleFrom(
-//                   backgroundColor: const Color(0xffE5E7EB),
+//                   backgroundColor: const Color.fromARGB(255, 229, 230, 233),
 //                   padding: const EdgeInsets.symmetric(
-//                     horizontal: 60,
+//                     horizontal: 120,
 //                     vertical: 15,
 //                   ),
 //                   shape: RoundedRectangleBorder(
 //                     borderRadius: BorderRadius.circular(30),
 //                   ),
 //                 ),
-//                 child: const Text(
-//                   "Login",
-//                   style: TextStyle(
-//                     color: Color(0xff1E3A8A),
-//                     fontWeight: FontWeight.bold,
-//                     fontSize: 20,
-//                   ),
-//                 ),
-//               ),
+//                 onPressed: () async {
+//                   // 🔹 Simulate login delay
+//                   await Future.delayed(const Duration(seconds: 1));
 
-//               const SizedBox(height: 50),
+//                   // 🔹 Dummy login always succeeds
+//                   bool success = true;
+
+//                   if (success) {
+//                     Navigator.pushReplacement(
+//                       context,
+//                       MaterialPageRoute(
+//                         builder: (_) => const CareerAssessmentScreen(),
+//                       ),
+//                     );
+//                   } else {
+//                     ScaffoldMessenger.of(context).showSnackBar(
+//                       const SnackBar(content: Text("Invalid Credentials")),
+//                     );
+//                   }
+//                 },
+//                 child: const Text("Login", style: TextStyle(fontSize: 20)),
+//               ),
 //             ],
 //           ),
 //         ),
@@ -112,13 +224,62 @@
 //   }
 // }
 import 'package:flutter/material.dart';
-import 'career_assessment_screen.dart'; // Your assessment screen
+import 'career_assessment_screen.dart';
+//import 'package:career_advisor_app/services/api_service.dart';
+// 👆 apne project name se replace karo
+import '../services/api_service.dart'; // ✅ Correct import for ApiService
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  // ✅ IMPORTANT: ApiService object
+  final ApiService api = ApiService();
+
+  bool loading = false;
+
+  void loginUser() async {
+    setState(() {
+      loading = true;
+    });
+
+    try {
+      bool success = await api.login(
+        emailController.text.trim(),
+        passwordController.text.trim(),
+      );
+
+      setState(() {
+        loading = false;
+      });
+
+      if (success) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const CareerAssessmentScreen()),
+        );
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text("Invalid Credentials")));
+      }
+    } catch (e) {
+      setState(() {
+        loading = false;
+      });
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: $e")));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,23 +299,23 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 120),
 
-              // Logo
-              Image.asset("assets/images/logo.png", height: 220),
+              Image.asset("assets/images/logo.png", height: 200),
 
               const SizedBox(height: 40),
 
-              // Email Field
+              // EMAIL
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  color: const Color(0xffE5E7EB),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: TextField(
                   controller: emailController,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    prefixIcon: Icon(Icons.email),
+                    icon: Icon(Icons.email),
                     hintText: "Email",
                   ),
                 ),
@@ -162,11 +323,12 @@ class LoginScreen extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // Password Field
+              // PASSWORD
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                  color: const Color(0xffE5E7EB),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: TextField(
@@ -174,47 +336,26 @@ class LoginScreen extends StatelessWidget {
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    prefixIcon: Icon(Icons.lock),
+                    icon: Icon(Icons.lock),
                     hintText: "Password",
                   ),
                 ),
               ),
 
-              const SizedBox(height: 35),
+              const SizedBox(height: 30),
 
-              // Login Button
+              // LOGIN BUTTON
               ElevatedButton(
+                onPressed: loading ? null : loginUser,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 229, 230, 233),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 120,
+                    horizontal: 100,
                     vertical: 15,
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
                 ),
-                onPressed: () async {
-                  // 🔹 Simulate login delay
-                  await Future.delayed(const Duration(seconds: 1));
-
-                  // 🔹 Dummy login always succeeds
-                  bool success = true;
-
-                  if (success) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const CareerAssessmentScreen(),
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Invalid Credentials")),
-                    );
-                  }
-                },
-                child: const Text("Login", style: TextStyle(fontSize: 20)),
+                child: loading
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text("Login"),
               ),
             ],
           ),
