@@ -224,10 +224,8 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import '../services/api_service.dart';
 import 'career_assessment_screen.dart';
-//import 'package:career_advisor_app/services/api_service.dart';
-// 👆 apne project name se replace karo
-import '../services/api_service.dart'; // ✅ Correct import for ApiService
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -240,44 +238,28 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // ✅ IMPORTANT: ApiService object
   final ApiService api = ApiService();
-
   bool loading = false;
 
   void loginUser() async {
-    setState(() {
-      loading = true;
-    });
+    setState(() => loading = true);
 
-    try {
-      bool success = await api.login(
-        emailController.text.trim(),
-        passwordController.text.trim(),
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    final success = await api.login(email, password);
+
+    setState(() => loading = false);
+
+    if (success) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const CareerAssessmentScreen()),
       );
-
-      setState(() {
-        loading = false;
-      });
-
-      if (success) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const CareerAssessmentScreen()),
-        );
-      } else {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text("Invalid Credentials")));
-      }
-    } catch (e) {
-      setState(() {
-        loading = false;
-      });
-
+    } else {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("Error: $e")));
+      ).showSnackBar(const SnackBar(content: Text("Invalid Credentials")));
     }
   }
 
@@ -286,21 +268,18 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
+            colors: [Color(0xff1E3A8A), Color(0xff3B82F6)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xff1E3A8A), Color(0xff3B82F6)],
           ),
         ),
         child: SingleChildScrollView(
           child: Column(
             children: [
               const SizedBox(height: 120),
-
               Image.asset("assets/images/logo.png", height: 200),
-
               const SizedBox(height: 40),
 
               // EMAIL
@@ -344,15 +323,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: 30),
 
-              // LOGIN BUTTON
               ElevatedButton(
                 onPressed: loading ? null : loginUser,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 100,
-                    vertical: 15,
-                  ),
-                ),
                 child: loading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : const Text("Login"),
