@@ -475,6 +475,67 @@
 //   }
 // }
 
+// import 'package:flutter/material.dart';
+// import '../services/api_service.dart';
+
+// class CareerDetailsScreen extends StatefulWidget {
+//   final String careerName;
+
+//   const CareerDetailsScreen({super.key, required this.careerName});
+
+//   @override
+//   State<CareerDetailsScreen> createState() => _CareerDetailsScreenState();
+// }
+
+// class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
+//   Map<String, dynamic>? data;
+//   bool loading = true;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     loadData();
+//   }
+
+//   void loadData() async {
+//     final formattedName = widget.careerName.toLowerCase().replaceAll(" ", "-");
+//     var res = await ApiService().getCareerDetails(formattedName);
+//     print(res);
+
+//     setState(() {
+//       data = res;
+//       loading = false;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     if (loading) {
+//       return const Scaffold(body: Center(child: CircularProgressIndicator()));
+//     }
+
+//     return Scaffold(
+//       appBar: AppBar(title: Text(data!['name'])),
+
+//       body: Padding(
+//         padding: const EdgeInsets.all(16),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text("Skills: ${data!['skills']}"),
+//             const SizedBox(height: 10),
+
+//             Text("Education: ${data!['education']}"),
+//             const SizedBox(height: 10),
+
+//             Text("Salary: ${data!['salary']}"),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 
@@ -499,7 +560,9 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
 
   void loadData() async {
     final formattedName = widget.careerName.toLowerCase().replaceAll(" ", "-");
+
     var res = await ApiService().getCareerDetails(formattedName);
+
     print(res);
 
     setState(() {
@@ -514,21 +577,28 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
+    // safety check
+    if (data == null || data!['success'] == false) {
+      return const Scaffold(body: Center(child: Text("Career not found")));
+    }
+
     return Scaffold(
-      appBar: AppBar(title: Text(data!['name'])),
+      appBar: AppBar(title: Text(data!['careerName'] ?? "Career Details")),
 
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Skills: ${data!['skills']}"),
+            Text("Description: ${data!['description'] ?? 'N/A'}"),
+
             const SizedBox(height: 10),
 
-            Text("Education: ${data!['education']}"),
+            Text("Skills: ${(data!['skills'] ?? []).join(', ')}"),
+
             const SizedBox(height: 10),
 
-            Text("Salary: ${data!['salary']}"),
+            Text("Salary: ${data!['salary'] ?? 'N/A'}"),
           ],
         ),
       ),
