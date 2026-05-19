@@ -43,61 +43,89 @@
 #         "message": "Career not found"
 #     }
 
+
 from fastapi import APIRouter
 from backend.database import career_collection
 
 router = APIRouter()
 
+# CAREERS DATA
 careers = {
-    "software engineer": {
+
+    "software-engineer": {
+        "careerName": "Software Engineer",
         "description": "Build software systems",
         "salary": "80k-120k",
-        "skills": ["Coding", "Problem Solving"]
+        "skills": [
+            "Coding",
+            "Problem Solving",
+            "Python",
+            "Debugging"
+        ]
     },
 
-    "ui/ux designer": {
-        "description": "Design user interfaces",
+    "ui-ux-designer": {
+        "careerName": "UI/UX Designer",
+        "description": "Design user interfaces and improve user experience",
         "salary": "60k-100k",
-        "skills": ["Creativity", "Design"]
+        "skills": [
+            "Creativity",
+            "Figma",
+            "UI Design",
+            "UX Research"
+        ]
     },
 
-    "hr manager": {
-        "description": "Manage employees",
+    "hr-manager": {
+        "careerName": "HR Manager",
+        "description": "Manage employees and company hiring process",
         "salary": "50k-90k",
-        "skills": ["Communication"]
+        "skills": [
+            "Communication",
+            "Leadership",
+            "Management"
+        ]
     },
 
-    "data analyst": {
-        "description": "Analyze data",
+    "data-analyst": {
+        "careerName": "Data Analyst",
+        "description": "Analyze company data and generate reports",
         "salary": "70k-110k",
-        "skills": ["Excel", "SQL"]
+        "skills": [
+            "Excel",
+            "SQL",
+            "Analytics",
+            "Power BI"
+        ]
     }
 }
 
 
+# GET CAREER DETAILS
 @router.get("/{name}")
 def get_career(name: str):
 
+    # CLEAN INPUT
     search_name = name.strip().lower()
 
+    # CHECK CAREER EXISTS
     if search_name in careers:
 
-        career_data = {
-            "careerName": search_name.title(),
-            **careers[search_name]
-        }
+        career_data = careers[search_name]
 
         # SAVE IN DATABASE
         result = career_collection.insert_one(career_data)
 
+        # RESPONSE
         return {
             "success": True,
             "id": str(result.inserted_id),
             **career_data
         }
 
+    # NOT FOUND
     return {
         "success": False,
         "message": "Career not found"
-
     }
+
