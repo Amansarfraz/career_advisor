@@ -1,43 +1,4 @@
-# from fastapi import APIRouter
-# from backend.schemas.assessment_schema import AssessmentRequest
 
-# router = APIRouter()
-
-# @router.post("/career-assessment")
-# def calculate_career(data: AssessmentRequest):
-
-#     scores = {
-#         "software engineer": 0,
-#         "ui/ux designer": 0,
-#         "hr manager": 0,
-#         "data analyst": 0
-#     }
-
-#     for ans in data.answers:
-#         if ans == 0:
-#             scores["software engineer"] += 1
-#         elif ans == 1:
-#             scores["ui/ux designer"] += 1
-#         elif ans == 2:
-#             scores["hr manager"] += 1
-#         elif ans == 3:
-#             scores["data analyst"] += 1
-
-#     top_career = max(scores, key=scores.get)
-#     top_score = scores[top_career]
-
-#     total = len(data.answers)
-
-#     if total == 0:
-#         return {"error": "No answers provided"}
-
-#     match_percent = int((top_score / total) * 100)
-
-#     return {
-#         "careerName": top_career.title(),
-#         "matchPercent": match_percent,
-#         "explanation": "Generated based on your answers"
-#     }
 
 from fastapi import APIRouter
 from backend.schemas.assessment_schema import AssessmentRequest
@@ -50,43 +11,59 @@ router = APIRouter()
 def calculate_career(data: AssessmentRequest):
 
     scores = {
-        "software engineer": 0,
-        "ui/ux designer": 0,
-        "hr manager": 0,
-        "data analyst": 0
+        "Software Engineer": 0,
+        "UI/UX Designer": 0,
+        "HR Manager": 0,
+        "Data Analyst": 0
     }
 
+    # CAREER EXPLANATIONS
+    explanations = {
+        "Software Engineer":
+            "You enjoy logical thinking, coding, and solving technical problems.",
+
+        "UI/UX Designer":
+            "You are creative and enjoy designing user-friendly experiences.",
+
+        "HR Manager":
+            "You are good at communication, teamwork, and managing people.",
+
+        "Data Analyst":
+            "You enjoy working with data, records, and analytical thinking."
+    }
+
+    # CALCULATE SCORES
     for ans in data.answers:
-        ans = int(ans)
 
         if ans == 0:
-            scores["software engineer"] += 1
+            scores["Software Engineer"] += 1
 
         elif ans == 1:
-            scores["ui/ux designer"] += 1
+            scores["UI/UX Designer"] += 1
 
         elif ans == 2:
-            scores["hr manager"] += 1
+            scores["HR Manager"] += 1
 
         elif ans == 3:
-            scores["data analyst"] += 1
+            scores["Data Analyst"] += 1
 
+    # BEST CAREER
     top_career = max(scores, key=scores.get)
+
     top_score = scores[top_career]
 
-    total = len(data.answers)
+    total_questions = len(data.answers)
 
-    if total == 0:
-        return {"error": "No answers provided"}
+    # PERCENTAGE
+    match_percent = int((top_score / total_questions) * 100)
 
-    match_percent = int((top_score / total) * 100)
-
-    # data save in MongoDB
+    # SAVE IN DATABASE
     assessment_data = {
         "answers": data.answers,
-        "careerName": top_career.title(),
+        "careerName": top_career,
         "matchPercent": match_percent,
-        "explanation": "Generated based on your answers"
+        "scores": scores,
+        "explanation": explanations[top_career]
     }
 
     result = assessment_collection.insert_one(assessment_data)
@@ -94,8 +71,9 @@ def calculate_career(data: AssessmentRequest):
     return {
         "success": True,
         "id": str(result.inserted_id),
-        "careerName": top_career.title(),
+        "careerName": top_career,
         "matchPercent": match_percent,
-        "explanation": "Generated based on your answers"
+        "scores": scores,
+        "explanation": explanations[top_career]
     }
 
