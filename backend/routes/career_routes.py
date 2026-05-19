@@ -44,12 +44,12 @@
 #     }
 
 
+
 from fastapi import APIRouter
 from backend.database import career_collection
 
 router = APIRouter()
 
-# CAREERS DATA
 careers = {
 
     "software-engineer": {
@@ -58,74 +58,76 @@ careers = {
         "salary": "80k-120k",
         "skills": [
             "Coding",
-            "Problem Solving",
-            "Python",
-            "Debugging"
+            "Problem Solving"
         ]
     },
 
     "ui-ux-designer": {
         "careerName": "UI/UX Designer",
-        "description": "Design user interfaces and improve user experience",
+        "description": "Design user interfaces",
         "salary": "60k-100k",
         "skills": [
             "Creativity",
-            "Figma",
-            "UI Design",
-            "UX Research"
+            "Design"
         ]
     },
 
     "hr-manager": {
         "careerName": "HR Manager",
-        "description": "Manage employees and company hiring process",
+        "description": "Manage employees",
         "salary": "50k-90k",
         "skills": [
-            "Communication",
-            "Leadership",
-            "Management"
+            "Communication"
         ]
     },
 
     "data-analyst": {
         "careerName": "Data Analyst",
-        "description": "Analyze company data and generate reports",
+        "description": "Analyze data",
         "salary": "70k-110k",
         "skills": [
             "Excel",
-            "SQL",
-            "Analytics",
-            "Power BI"
+            "SQL"
         ]
     }
 }
 
 
-# GET CAREER DETAILS
 @router.get("/{name}")
 def get_career(name: str):
 
-    # CLEAN INPUT
-    search_name = name.strip().lower()
+    try:
 
-    # CHECK CAREER EXISTS
-    if search_name in careers:
+        search_name = name.strip().lower()
 
-        career_data = careers[search_name]
+        if search_name in careers:
 
-        # SAVE IN DATABASE
-        result = career_collection.insert_one(career_data)
+            career_data = careers[search_name]
 
-        # RESPONSE
+            # SAVE TO DATABASE
+            result = career_collection.insert_one({
+                "careerName": career_data["careerName"],
+                "description": career_data["description"],
+                "salary": career_data["salary"],
+                "skills": career_data["skills"]
+            })
+
+            return {
+                "success": True,
+                "id": str(result.inserted_id),
+                **career_data
+            }
+
         return {
-            "success": True,
-            "id": str(result.inserted_id),
-            **career_data
+            "success": False,
+            "message": "Career not found"
         }
 
-    # NOT FOUND
-    return {
-        "success": False,
-        "message": "Career not found"
-    }
+    except Exception as e:
+
+        return {
+            "success": False,
+            "error": str(e)
+        }
+
 
