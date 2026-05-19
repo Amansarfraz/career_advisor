@@ -498,7 +498,8 @@ class _CareerDetailsScreenState extends State<CareerDetailsScreen> {
   }
 
   void loadData() async {
-    var res = await ApiService().getCareerDetails(widget.careerName);
+    final formattedName = widget.careerName.toLowerCase().replaceAll(" ", "-");
+    var res = await ApiService().getCareerDetails(formattedName);
 
     setState(() {
       data = res;
