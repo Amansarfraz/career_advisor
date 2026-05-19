@@ -15,5 +15,5 @@ client = MongoClient("mongodb://localhost:27017")
 db = client["career_advisor_db"]
 
 user_collection = db["users"]
-career_collection = db["careers"]
+career_collection = db["careers_details"]
 assessment_collection = db["assessments"]
