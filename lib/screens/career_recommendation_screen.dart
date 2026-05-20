@@ -1,17 +1,306 @@
+// import 'package:flutter/material.dart';
+// import 'career_details_screen.dart';
+// import 'career_assessment_screen.dart';
+// //import '../models/career_model.dart';
+// import 'package:career_advisor/models/career_model.dart';
+
+// class CareerRecommendationScreen extends StatefulWidget {
+//   final int matchPercentage;
+//   // final String careerName;
+//   // final String shortExplanation;
+//   final CareerModel career;
+//   const CareerRecommendationScreen({
+//     super.key,
+//     required this.matchPercentage,
+//     required this.career,
+//   });
+
+//   // const CareerRecommendationScreen({
+//   //   super.key,
+//   //   required this.matchPercentage,
+//   //   required this.careerName,
+//   //   required this.shortExplanation,
+//   // });
+
+//   @override
+//   State<CareerRecommendationScreen> createState() =>
+//       _CareerRecommendationScreenState();
+// }
+
+// class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController _controller;
+//   late Animation<double> _progressAnimation;
+//   late Animation<int> _countAnimation;
+
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     _controller = AnimationController(
+//       vsync: this,
+//       duration: const Duration(milliseconds: 1600),
+//     );
+
+//     _progressAnimation = Tween<double>(
+//       begin: 0.0,
+//       end: widget.matchPercentage / 100,
+//     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+
+//     _countAnimation = IntTween(
+//       begin: 0,
+//       end: widget.matchPercentage,
+//     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+
+//     _controller.forward();
+//   }
+
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     bool isDark = Theme.of(context).brightness == Brightness.dark;
+
+//     return Scaffold(
+//       backgroundColor: isDark ? Colors.black : Colors.white,
+//       body: SafeArea(
+//         child: SingleChildScrollView(
+//           child: Column(
+//             children: [
+//               /// HEADER
+//               Container(
+//                 width: double.infinity,
+//                 height: 80,
+//                 color: const Color(0xFF3F72C8),
+//                 child: Stack(
+//                   alignment: Alignment.center,
+//                   children: [
+//                     Positioned(
+//                       left: 4,
+//                       child: IconButton(
+//                         icon: const Icon(
+//                           Icons.arrow_back,
+//                           color: Colors.white,
+//                           size: 28,
+//                         ),
+//                         onPressed: () {
+//                           Navigator.pushReplacement(
+//                             context,
+//                             MaterialPageRoute(
+//                               builder: (context) =>
+//                                   const CareerAssessmentScreen(),
+//                             ),
+//                           );
+//                         },
+//                       ),
+//                     ),
+//                     const Text(
+//                       "Career Recommendation",
+//                       style: TextStyle(
+//                         color: Colors.white,
+//                         fontSize: 22,
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+
+//               const SizedBox(height: 40),
+
+//               /// MATCH CIRCLE
+//               AnimatedBuilder(
+//                 animation: _controller,
+//                 builder: (context, child) {
+//                   return SizedBox(
+//                     width: 220,
+//                     height: 220,
+//                     child: Stack(
+//                       alignment: Alignment.center,
+//                       children: [
+//                         SizedBox(
+//                           width: 220,
+//                           height: 220,
+//                           child: CircularProgressIndicator(
+//                             value: 1.0,
+//                             strokeWidth: 15,
+//                             color: Colors.grey.shade300,
+//                           ),
+//                         ),
+//                         SizedBox(
+//                           width: 220,
+//                           height: 220,
+//                           child: CircularProgressIndicator(
+//                             value: _progressAnimation.value,
+//                             strokeWidth: 15,
+//                             color: const Color(0xFF3F72C8),
+//                           ),
+//                         ),
+//                         Column(
+//                           mainAxisAlignment: MainAxisAlignment.center,
+//                           children: [
+//                             Text(
+//                               "${_countAnimation.value}%",
+//                               style: const TextStyle(
+//                                 fontSize: 36,
+//                                 fontWeight: FontWeight.w900,
+//                                 color: Color(0xFF3F72C8),
+//                               ),
+//                             ),
+//                             const Text(
+//                               "MATCH",
+//                               style: TextStyle(
+//                                 fontSize: 12,
+//                                 fontWeight: FontWeight.w800,
+//                                 color: Colors.grey,
+//                                 letterSpacing: 2,
+//                               ),
+//                             ),
+//                             const SizedBox(height: 10),
+//                             Padding(
+//                               padding: const EdgeInsets.symmetric(
+//                                 horizontal: 16,
+//                               ),
+//                               child: Text(
+//                                 //widget.careerName,
+//                                 widget.career.careerName,
+//                                 textAlign: TextAlign.center,
+//                                 style: TextStyle(
+//                                   fontSize: 15,
+//                                   fontWeight: FontWeight.w800,
+//                                   color: isDark
+//                                       ? Colors.white
+//                                       : const Color(0xFF1a2a4a),
+//                                 ),
+//                                 maxLines: 2,
+//                                 overflow: TextOverflow.ellipsis,
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       ],
+//                     ),
+//                   );
+//                 },
+//               ),
+
+//               const SizedBox(height: 48),
+
+//               /// EXPLANATION CARD
+//               Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 16),
+//                 child: Container(
+//                   width: double.infinity,
+//                   padding: const EdgeInsets.all(18),
+//                   decoration: BoxDecoration(
+//                     color: isDark
+//                         ? const Color(0xff1e1e1e)
+//                         : const Color(0xFFDCE6F2),
+//                     borderRadius: BorderRadius.circular(16),
+//                   ),
+//                   child: Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       Text(
+//                         "Short Explanation",
+//                         style: TextStyle(
+//                           fontSize: 18,
+//                           fontWeight: FontWeight.bold,
+//                           color: isDark
+//                               ? Colors.white
+//                               : const Color(0xFF1a2a4a),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 10),
+//                       Text(
+//                         // widget.shortExplanation,
+//                         widget.career.educationPath,
+//                         style: TextStyle(
+//                           fontSize: 15,
+//                           color: isDark
+//                               ? Colors.white70
+//                               : const Color(0xFF3a4a6a),
+//                           height: 1.6,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+
+//               const SizedBox(height: 40),
+
+//               /// BUTTON
+//               Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 16),
+//                 child: SizedBox(
+//                   width: double.infinity,
+//                   height: 60,
+//                   child: ElevatedButton(
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                           builder: (context) =>
+//                               CareerDetailsScreen(career: widget.career),
+//                         ),
+//                       );
+//                     },
+//                     style: ElevatedButton.styleFrom(
+//                       backgroundColor: const Color(0xFF3F72C8),
+//                       shape: RoundedRectangleBorder(
+//                         borderRadius: BorderRadius.circular(40),
+//                       ),
+//                     ),
+//                     child: const Text(
+//                       "View Roadmap & Details",
+//                       style: TextStyle(
+//                         fontSize: 18,
+//                         fontWeight: FontWeight.bold,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ),
+
+//               const SizedBox(height: 30),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
+
 import 'career_details_screen.dart';
 import 'career_assessment_screen.dart';
+import '../models/career_model.dart';
 
 class CareerRecommendationScreen extends StatefulWidget {
   final int matchPercentage;
+
   final String careerName;
+
   final String shortExplanation;
+
+  // IMPORTANT
+  final Map<String, dynamic> career;
 
   const CareerRecommendationScreen({
     super.key,
     required this.matchPercentage,
     required this.careerName,
     required this.shortExplanation,
+
+    // IMPORTANT
+    required this.career,
   });
 
   @override
@@ -22,7 +311,9 @@ class CareerRecommendationScreen extends StatefulWidget {
 class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+
   late Animation<double> _progressAnimation;
+
   late Animation<int> _countAnimation;
 
   @override
@@ -50,6 +341,7 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
   @override
   void dispose() {
     _controller.dispose();
+
     super.dispose();
   }
 
@@ -59,26 +351,32 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
 
     return Scaffold(
       backgroundColor: isDark ? Colors.black : Colors.white,
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              /// HEADER
+              // HEADER
               Container(
                 width: double.infinity,
                 height: 80,
+
                 color: const Color(0xFF3F72C8),
+
                 child: Stack(
                   alignment: Alignment.center,
+
                   children: [
                     Positioned(
                       left: 4,
+
                       child: IconButton(
                         icon: const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
                           size: 28,
                         ),
+
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
@@ -90,8 +388,10 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
                         },
                       ),
                     ),
+
                     const Text(
                       "Career Recommendation",
+
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,
@@ -104,47 +404,62 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
 
               const SizedBox(height: 40),
 
-              /// MATCH CIRCLE
+              // MATCH CIRCLE
               AnimatedBuilder(
                 animation: _controller,
+
                 builder: (context, child) {
                   return SizedBox(
                     width: 220,
                     height: 220,
+
                     child: Stack(
                       alignment: Alignment.center,
+
                       children: [
                         SizedBox(
                           width: 220,
                           height: 220,
+
                           child: CircularProgressIndicator(
                             value: 1.0,
+
                             strokeWidth: 15,
+
                             color: Colors.grey.shade300,
                           ),
                         ),
+
                         SizedBox(
                           width: 220,
                           height: 220,
+
                           child: CircularProgressIndicator(
                             value: _progressAnimation.value,
+
                             strokeWidth: 15,
+
                             color: const Color(0xFF3F72C8),
                           ),
                         ),
+
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
                             Text(
                               "${_countAnimation.value}%",
+
                               style: const TextStyle(
                                 fontSize: 36,
                                 fontWeight: FontWeight.w900,
                                 color: Color(0xFF3F72C8),
                               ),
                             ),
+
                             const Text(
                               "MATCH",
+
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w800,
@@ -152,22 +467,30 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
                                 letterSpacing: 2,
                               ),
                             ),
+
                             const SizedBox(height: 10),
+
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 16,
                               ),
+
                               child: Text(
                                 widget.careerName,
+
                                 textAlign: TextAlign.center,
+
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w800,
+
                                   color: isDark
                                       ? Colors.white
                                       : const Color(0xFF1a2a4a),
                                 ),
+
                                 maxLines: 2,
+
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -181,39 +504,52 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
 
               const SizedBox(height: 48),
 
-              /// EXPLANATION CARD
+              // EXPLANATION CARD
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
+
                 child: Container(
                   width: double.infinity,
+
                   padding: const EdgeInsets.all(18),
+
                   decoration: BoxDecoration(
                     color: isDark
                         ? const Color(0xff1e1e1e)
                         : const Color(0xFFDCE6F2),
+
                     borderRadius: BorderRadius.circular(16),
                   ),
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+
                     children: [
                       Text(
                         "Short Explanation",
+
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+
                           color: isDark
                               ? Colors.white
                               : const Color(0xFF1a2a4a),
                         ),
                       ),
+
                       const SizedBox(height: 10),
+
                       Text(
                         widget.shortExplanation,
+
                         style: TextStyle(
                           fontSize: 15,
+
                           color: isDark
                               ? Colors.white70
                               : const Color(0xFF3a4a6a),
+
                           height: 1.6,
                         ),
                       ),
@@ -224,31 +560,67 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
 
               const SizedBox(height: 40),
 
-              /// BUTTON
+              // BUTTON
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
+
                 child: SizedBox(
                   width: double.infinity,
                   height: 60,
+
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => CareerDetailsScreen(
-                            careerName: widget.careerName,
+                            career: CareerModel(
+                              name: careerName,
+
+                              description: shortExplanation,
+
+                              requiredSkills:
+                                  "Java, Python, SQL, Problem Solving",
+
+                              educationPath:
+                                  "Computer Science Degree or Bootcamp",
+
+                              salaryRange: "70,000 USD to 120,000+ USD",
+
+                              roadmap: [
+                                {
+                                  "title": "1. Fundamentals",
+                                  "desc": "Learn programming basics and OOP.",
+                                },
+
+                                {
+                                  "title": "2. Projects",
+                                  "desc": "Build real-world projects.",
+                                },
+
+                                {
+                                  "title": "3. Growth",
+                                  "desc":
+                                      "Choose specialization and improve skills.",
+                                },
+                              ],
+                            ),
                           ),
                         ),
                       );
                     },
+
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF3F72C8),
+
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
                     ),
+
                     child: const Text(
                       "View Roadmap & Details",
+
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

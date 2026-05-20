@@ -4,7 +4,7 @@ import 'screens/get_started_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/career_assessment_screen.dart';
 import 'screens/career_recommendation_screen.dart';
-import 'screens/career_details_screen.dart';
+//import 'screens/career_details_screen.dart';
 import 'screens/setting_screen.dart';
 
 void main() {
@@ -62,8 +62,8 @@ class _MyAppState extends State<MyApp> {
               careerName: "Software Engineer",
               shortExplanation: "Based on your answers this career suits you.",
             ),
-        '/career_details_screen': (context) =>
-            const CareerDetailsScreen(careerName: " widget.careerName"),
+        // '/career_details_screen': (context) =>
+        //     const CareerDetailsScreen(careerName: " widget.careerName"),
         '/setting_screen': (context) => SettingScreen(
           isDark: MyApp.of(context)!.isDarkMode,
           onToggle: MyApp.of(context)!.toggleTheme,
