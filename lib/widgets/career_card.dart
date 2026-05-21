@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/career_model.dart';
 
 class CareerCard extends StatelessWidget {
-  final Career career;
+  final CareerModel career;
   final VoidCallback? onTap;
 
   const CareerCard({Key? key, required this.career, this.onTap})
@@ -23,7 +23,7 @@ class CareerCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                career.careerName,
+                career.name,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class CareerCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                "Average Salary: ${career.averageSalary}",
+                "Average Salary: ${career.salaryRange}",
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
@@ -46,7 +46,7 @@ class CareerCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                "Skills: ${career.requiredSkills.join(', ')}",
+                "Skills: ${career.requiredSkills}",
                 style: const TextStyle(fontSize: 12, color: Colors.black54),
               ),
             ],

@@ -575,9 +575,9 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
                         MaterialPageRoute(
                           builder: (context) => CareerDetailsScreen(
                             career: CareerModel(
-                              name: careerName,
+                              name: widget.careerName,
 
-                              description: shortExplanation,
+                              description: widget.shortExplanation,
 
                               requiredSkills:
                                   "Java, Python, SQL, Problem Solving",

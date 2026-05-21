@@ -61,7 +61,24 @@ class _MyAppState extends State<MyApp> {
               matchPercentage: 85,
               careerName: "Software Engineer",
               shortExplanation: "Based on your answers this career suits you.",
+              career: {
+                "careerName": "Software Engineer",
+                "requiredSkills": "Java, Python, SQL, Problem Solving",
+                "educationPath": "Computer Science Degree",
+                "salaryRange": "70,000 USD - 120,000 USD",
+                "roadmap": [
+                  {
+                    "title": "1. Fundamentals",
+                    "desc": "Learn programming basics and OOP.",
+                  },
+                  {
+                    "title": "2. Projects",
+                    "desc": "Build real-world projects.",
+                  },
+                ],
+              },
             ),
+
         // '/career_details_screen': (context) =>
         //     const CareerDetailsScreen(careerName: " widget.careerName"),
         '/setting_screen': (context) => SettingScreen(

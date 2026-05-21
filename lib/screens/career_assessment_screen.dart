@@ -616,16 +616,48 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
           isLoading = false;
         });
 
-        Navigator.pushReplacement(
-          context,
+        // Navigator.pushReplacement(
+        //   context,
 
+        //   MaterialPageRoute(
+        //     builder: (context) => CareerRecommendationScreen(
+        //       matchPercentage: result["matchPercent"],
+
+        //       careerName: result["careerName"],
+
+        //       shortExplanation: result["explanation"],
+        //     ),
+        //   ),
+        // );
+
+        Navigator.push(
+          context,
           MaterialPageRoute(
             builder: (context) => CareerRecommendationScreen(
-              matchPercentage: result["matchPercent"],
+              matchPercentage: 92,
 
-              careerName: result["careerName"],
+              careerName: "Software Engineer",
 
-              shortExplanation: result["explanation"],
+              shortExplanation: "Best career for coding and logical thinking.",
+
+              career: {
+                "careerName": "Software Engineer",
+                "requiredSkills": "Java, Python, SQL, Problem Solving",
+                "educationPath": "Computer Science Degree",
+                "salaryRange": "70,000 USD - 120,000 USD",
+
+                "roadmap": [
+                  {
+                    "title": "1. Fundamentals",
+                    "desc": "Learn programming basics and OOP.",
+                  },
+
+                  {
+                    "title": "2. Projects",
+                    "desc": "Build real-world projects.",
+                  },
+                ],
+              },
             ),
           ),
         );
