@@ -3,7 +3,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import List
-from backend.database import career_collection, assessment_collection
+from backend.database import careers_details_collection, assessments_collection
 router = APIRouter()
 
 # =========================================
@@ -173,7 +173,7 @@ def calculate_career(data: AssessmentRequest):
         "explanation": f"Based on your answers, {career['careerName']} is best for you."
     }
 
-    assessment_collection.insert_one(assessment_doc)
+    assessments_collection.insert_one(assessment_doc)
 
     # =========================
     # 2. CAREER DETAILS SAVE
@@ -187,7 +187,7 @@ def calculate_career(data: AssessmentRequest):
         "roadmap": career["roadmap"]
     }
 
-    career_collection.insert_one(career_doc)
+    careers_details_collection.insert_one(career_doc)
 
     # =========================
     # RETURN FULL RESPONSE
