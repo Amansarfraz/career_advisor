@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter
 from backend.schemas.assessment_schema import AssessmentRequest
-from backend.database import assessment_collection
+from backend.database import assessments_collection
 
 router = APIRouter()
 
@@ -66,7 +66,7 @@ def calculate_career(data: AssessmentRequest):
         "explanation": explanations[top_career]
     }
 
-    result = assessment_collection.insert_one(assessment_data)
+    result = assessments_collection.insert_one(assessment_data)
 
     return {
         "success": True,
