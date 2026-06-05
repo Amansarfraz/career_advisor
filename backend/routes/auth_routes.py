@@ -1,7 +1,7 @@
 
 
 from fastapi import APIRouter
-from backend.database import user_collection
+from backend.database import users_collection
 from backend.schemas.auth_schema import LoginRequest
 
 router = APIRouter()
@@ -14,7 +14,7 @@ def login_user(data: LoginRequest):
     password = str(data.password).strip()
 
     # check existing user
-    user = user_collection.find_one({"email": email})
+    user = users_collection.find_one({"email": email})
 
     # if user exists
     if user:
@@ -41,7 +41,7 @@ def login_user(data: LoginRequest):
         "password": password
     }
 
-    inserted_user = user_collection.insert_one(new_user)
+    inserted_user = users_collection.insert_one(new_user)
 
     return {
         "success": True,
