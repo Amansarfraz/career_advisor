@@ -1,217 +1,144 @@
 
 
-from fastapi import APIRouter
-from pydantic import BaseModel
-from typing import List
-from backend.database import careers_details_collection, assessments_collection
-router = APIRouter()
+# from fastapi import APIRouter
+# from pydantic import BaseModel
+# from typing import List
+# from backend.database import careers_details_collection, assessments_collection
+# router = APIRouter()
 
-# =========================================
-# REQUEST MODEL
-# =========================================
+# # =========================================
+# # REQUEST MODEL
+# # =========================================
 
-class AssessmentRequest(BaseModel):
-    answers: List[int]
+# class AssessmentRequest(BaseModel):
+#     answers: List[int]
 
-# =========================================
-# CAREER DATABASE
-# =========================================
+# # =========================================
+# # CAREER DATABASE
+# # =========================================
 
-careers = {
-    "software-engineer": {
-        "careerName": "Software Engineer",
-        "description": "Build software systems",
+# careers = {
+#     "software-engineer": {
+#         "careerName": "Software Engineer",
+#         "description": "Build software systems",
 
-        "salary": "70,000 USD to 120,000+ USD",
+#         "salary": "70,000 USD to 120,000+ USD",
 
-        "skills": [
-            "Java",
-            "Python",
-            "SQL",
-            "Problem Solving",
-            "OOP"
-        ],
+#         "skills": [
+#             "Java",
+#             "Python",
+#             "SQL",
+#             "Problem Solving",
+#             "OOP"
+#         ],
 
-        "educationPath": "Computer Science Degree or Bootcamp",
+#         "educationPath": "Computer Science Degree or Bootcamp",
 
-        "roadmap": [
-            {
-                "title": "1. Fundamentals",
-                "desc": "Programming basics, DSA, OOP and core CS concepts."
-            },
+#         "roadmap": [
+#             {
+#                 "title": "1. Fundamentals",
+#                 "desc": "Programming basics, DSA, OOP and core CS concepts."
+#             },
 
-            {
-                "title": "2. Projects & Practice",
-                "desc": "Build real-world projects."
-            },
+#             {
+#                 "title": "2. Projects & Practice",
+#                 "desc": "Build real-world projects."
+#             },
 
-            {
-                "title": "3. Specialization & Growth",
-                "desc": "Choose web, mobile or AI."
-            }
-        ]
-    },
+#             {
+#                 "title": "3. Specialization & Growth",
+#                 "desc": "Choose web, mobile or AI."
+#             }
+#         ]
+#     },
 
-    "ui-ux-designer": {
-        "careerName": "UI/UX Designer",
-        "description": "Design user interfaces",
+#     "ui-ux-designer": {
+#         "careerName": "UI/UX Designer",
+#         "description": "Design user interfaces",
 
-        "salary": "55,000 USD to 100,000+ USD",
+#         "salary": "55,000 USD to 100,000+ USD",
 
-        "skills": [
-            "Figma",
-            "Adobe XD",
-            "Typography",
-            "Creativity"
-        ],
+#         "skills": [
+#             "Figma",
+#             "Adobe XD",
+#             "Typography",
+#             "Creativity"
+#         ],
 
-        "educationPath": "Graphic Design Degree",
+#         "educationPath": "Graphic Design Degree",
 
-        "roadmap": [
-            {
-                "title": "1. Design Basics",
-                "desc": "Learn layouts and typography."
-            },
+#         "roadmap": [
+#             {
+#                 "title": "1. Design Basics",
+#                 "desc": "Learn layouts and typography."
+#             },
 
-            {
-                "title": "2. Design Tools",
-                "desc": "Master Figma and Adobe XD."
-            }
-        ]
-    },
+#             {
+#                 "title": "2. Design Tools",
+#                 "desc": "Master Figma and Adobe XD."
+#             }
+#         ]
+#     },
 
-    "hr-manager": {
-        "careerName": "HR Manager",
-        "description": "Manage employees",
+#     "hr-manager": {
+#         "careerName": "HR Manager",
+#         "description": "Manage employees",
 
-        "salary": "50,000 USD to 90,000+ USD",
+#         "salary": "50,000 USD to 90,000+ USD",
 
-        "skills": [
-            "Communication",
-            "Leadership",
-            "Recruitment"
-        ],
+#         "skills": [
+#             "Communication",
+#             "Leadership",
+#             "Recruitment"
+#         ],
 
-        "educationPath": "HR Degree or MBA",
+#         "educationPath": "HR Degree or MBA",
 
-        "roadmap": [
-            {
-                "title": "1. Communication Skills",
-                "desc": "Improve leadership skills."
-            },
+#         "roadmap": [
+#             {
+#                 "title": "1. Communication Skills",
+#                 "desc": "Improve leadership skills."
+#             },
 
-            {
-                "title": "2. HR Basics",
-                "desc": "Learn hiring and onboarding."
-            }
-        ]
-    },
+#             {
+#                 "title": "2. HR Basics",
+#                 "desc": "Learn hiring and onboarding."
+#             }
+#         ]
+#     },
 
-    "data-analyst": {
-        "careerName": "Data Analyst",
-        "description": "Analyze business data",
+#     "data-analyst": {
+#         "careerName": "Data Analyst",
+#         "description": "Analyze business data",
 
-        "salary": "60,000 USD to 110,000+ USD",
+#         "salary": "60,000 USD to 110,000+ USD",
 
-        "skills": [
-            "Excel",
-            "SQL",
-            "Python",
-            "Power BI"
-        ],
+#         "skills": [
+#             "Excel",
+#             "SQL",
+#             "Python",
+#             "Power BI"
+#         ],
 
-        "educationPath": "Statistics or CS Degree",
+#         "educationPath": "Statistics or CS Degree",
 
-        "roadmap": [
-            {
-                "title": "1. Data Foundations",
-                "desc": "Learn Excel and SQL."
-            },
+#         "roadmap": [
+#             {
+#                 "title": "1. Data Foundations",
+#                 "desc": "Learn Excel and SQL."
+#             },
 
-            {
-                "title": "2. Visualization",
-                "desc": "Master Power BI."
-            }
-        ]
-    }
-}
+#             {
+#                 "title": "2. Visualization",
+#                 "desc": "Master Power BI."
+#             }
+#         ]
+#     }
+# }
 
-# =========================================
-# API
-# =========================================
-@router.post("/career-assessment")
-def calculate_career(data: AssessmentRequest):
-
-    scores = {
-        "software-engineer": 0,
-        "ui-ux-designer": 0,
-        "hr-manager": 0,
-        "data-analyst": 0
-    }
-
-    for ans in data.answers:
-        if ans == 0:
-            scores["software-engineer"] += 2
-        elif ans == 1:
-            scores["ui-ux-designer"] += 2
-        elif ans == 2:
-            scores["hr-manager"] += 2
-        elif ans == 3:
-            scores["data-analyst"] += 2
-
-    best_career_key = max(scores, key=scores.get)
-    career = careers[best_career_key]
-
-    match_percent = min(95, 60 + scores[best_career_key])
-
-    # =========================
-    # 1. ONLY ASSESSMENT SAVE
-    # =========================
-    assessment_doc = {
-        "careerName": career["careerName"],
-        "matchPercent": match_percent,
-        "explanation": f"Based on your answers, {career['careerName']} is best for you."
-    }
-
-    assessments_collection.insert_one(assessment_doc)
-
-    # =========================
-    # 2. CAREER DETAILS SAVE
-    # =========================
-   
-    # =========================
-    # RETURN FULL RESPONSE
-    # =========================
-    return {
-        "careerName": career["careerName"],
-        "matchPercent": match_percent,
-        "explanation": f"Based on your answers, {career['careerName']} is best for you.",
-        "description": career["description"],
-        "skills": career["skills"],
-        "salary": career["salary"],
-        "educationPath": career["educationPath"],
-        "roadmap": career["roadmap"]
-    }
-@router.get("/career-details/{career_key}")
-def get_career_details(career_key: str):
-
-    if career_key not in careers:
-        return {"error": "Career not found"}
-
-    career = careers[career_key]
-
-    career_doc = {
-        "careerName": career["careerName"],
-        "description": career["description"],
-        "skills": career["skills"],
-        "salary": career["salary"],
-        "educationPath": career["educationPath"],
-        "roadmap": career["roadmap"]
-    }
-
-    careers_details_collection.insert_one(career_doc)
-
-    return career_doc
+# # =========================================
+# # API
+# # =========================================
 # @router.post("/career-assessment")
 # def calculate_career(data: AssessmentRequest):
 
@@ -222,81 +149,192 @@ def get_career_details(career_key: str):
 #         "data-analyst": 0
 #     }
 
-#     # =====================================
-#     # SCORING LOGIC
-#     # =====================================
-
 #     for ans in data.answers:
-
 #         if ans == 0:
 #             scores["software-engineer"] += 2
-
 #         elif ans == 1:
 #             scores["ui-ux-designer"] += 2
-
 #         elif ans == 2:
 #             scores["hr-manager"] += 2
-
 #         elif ans == 3:
 #             scores["data-analyst"] += 2
 
-#     # =====================================
-#     # BEST CAREER
-#     # =====================================
-
 #     best_career_key = max(scores, key=scores.get)
-
 #     career = careers[best_career_key]
 
-#     total_score = scores[best_career_key]
+#     match_percent = min(95, 60 + scores[best_career_key])
 
-#     match_percent = min(95, 60 + total_score)
+#     # =========================
+#     # 1. ONLY ASSESSMENT SAVE
+#     # =========================
+#     assessment_doc = {
+#         "careerName": career["careerName"],
+#         "matchPercent": match_percent,
+#         "explanation": f"Based on your answers, {career['careerName']} is best for you."
+#     }
 
-#     # =====================================
-#     # RESPONSE
-#     # =====================================
-    
-#     # return {
-#     #     "careerName": career["careerName"],
+#     assessments_collection.insert_one(assessment_doc)
 
-#     #     "matchPercent": match_percent,
+#     # =========================
+#     # 2. CAREER DETAILS SAVE
+#     # =========================
+   
+#     # =========================
+#     # RETURN FULL RESPONSE
+#     # =========================
+#     return {
+#         "careerName": career["careerName"],
+#         "matchPercent": match_percent,
+#         "explanation": f"Based on your answers, {career['careerName']} is best for you.",
+#         "description": career["description"],
+#         "skills": career["skills"],
+#         "salary": career["salary"],
+#         "educationPath": career["educationPath"],
+#         "roadmap": career["roadmap"]
+#     }
+# @router.get("/career-details/{career_key}")
+# def get_career_details(career_key: str):
 
-#     #     "explanation":
-#     #         f"Based on your answers, "
-#     #         f"{career['careerName']} is best for you.",
+#     if career_key not in careers:
+#         return {"error": "Career not found"}
 
-#     #     "description": career["description"],
+#     career = careers[career_key]
 
-#     #     "skills": career["skills"],
-
-#     #     "salary": career["salary"],
-
-#     #     "educationPath": career["educationPath"],
-
-#     #     "roadmap": career["roadmap"]
-#     # }
 #     career_doc = {
-#     "careerName": career["careerName"],
-#     "matchPercent": match_percent,
-#     "explanation":
-#         f"Based on your answers, "
-#         f"{career['careerName']} is best for you.",
+#         "careerName": career["careerName"],
+#         "description": career["description"],
+#         "skills": career["skills"],
+#         "salary": career["salary"],
+#         "educationPath": career["educationPath"],
+#         "roadmap": career["roadmap"]
+#     }
 
-#     "description": career["description"],
-#     "skills": career["skills"],
-#     "salary": career["salary"],
-#     "educationPath": career["educationPath"],
-#     "roadmap": career["roadmap"]
-# }
-
-#     assessment_collection.insert_one(career_doc.copy())
-
+#     careers_details_collection.insert_one(career_doc)
 
 #     return career_doc
 
 
 
 
+# from fastapi import APIRouter
+# from backend.database import careers_details_collection
+
+# router = APIRouter()
+
+# careers = {
+#     "software-engineer": {
+#         "careerName": "Software Engineer",
+#         "description": "Build software systems",
+#         "salary": "70,000 USD to 120,000+ USD",
+#         "skills": [
+#             "Java",
+#             "Python",
+#             "SQL",
+#             "Problem Solving",
+#             "OOP"
+#         ],
+#         "educationPath": "Computer Science Degree or Bootcamp",
+#         "roadmap": [
+#             {
+#                 "title": "1. Fundamentals",
+#                 "desc": "Programming basics, DSA, OOP and core CS concepts."
+#             },
+#             {
+#                 "title": "2. Projects & Practice",
+#                 "desc": "Build real-world projects."
+#             }
+#         ]
+#     },
+
+#     "ui-ux-designer": {
+#         "careerName": "UI/UX Designer",
+#         "description": "Design user interfaces",
+#         "salary": "55,000 USD to 100,000+ USD",
+#         "skills": [
+#             "Figma",
+#             "Adobe XD",
+#             "Typography",
+#             "Creativity"
+#         ],
+#         "educationPath": "Graphic Design Degree",
+#         "roadmap": [
+#             {
+#                 "title": "1. Design Basics",
+#                 "desc": "Learn layouts and typography."
+#             },
+#             {
+#                 "title": "2. Design Tools",
+#                 "desc": "Master Figma and Adobe XD."
+#             }
+#         ]
+#     },
+
+#     "hr-manager": {
+#         "careerName": "HR Manager",
+#         "description": "Manage employees",
+#         "salary": "50,000 USD to 90,000+ USD",
+#         "skills": [
+#             "Communication",
+#             "Leadership",
+#             "Recruitment"
+#         ],
+#         "educationPath": "HR Degree or MBA",
+#         "roadmap": [
+#             {
+#                 "title": "1. Communication Skills",
+#                 "desc": "Improve leadership skills."
+#             },
+#             {
+#                 "title": "2. HR Basics",
+#                 "desc": "Learn hiring and onboarding."
+#             }
+#         ]
+#     },
+
+#     "data-analyst": {
+#         "careerName": "Data Analyst",
+#         "description": "Analyze business data",
+#         "salary": "60,000 USD to 110,000+ USD",
+#         "skills": [
+#             "Excel",
+#             "SQL",
+#             "Python",
+#             "Power BI"
+#         ],
+#         "educationPath": "Statistics or CS Degree",
+#         "roadmap": [
+#             {
+#                 "title": "1. Data Foundations",
+#                 "desc": "Learn Excel and SQL."
+#             },
+#             {
+#                 "title": "2. Visualization",
+#                 "desc": "Master Power BI."
+#             }
+#         ]
+#     }
+# }
+
+# @router.get("/career-details/{career_key}")
+# def get_career_details(career_key: str):
+
+#     if career_key not in careers:
+#         return {"error": "Career not found"}
+
+#     career = careers[career_key]
+
+#     career_doc = {
+#         "careerName": career["careerName"],
+#         "description": career["description"],
+#         "skills": career["skills"],
+#         "salary": career["salary"],
+#         "educationPath": career["educationPath"],
+#         "roadmap": career["roadmap"]
+#     }
+
+#     careers_details_collection.insert_one(career_doc)
+
+#     return career_doc
 from fastapi import APIRouter
 from backend.database import careers_details_collection
 
@@ -307,23 +345,11 @@ careers = {
         "careerName": "Software Engineer",
         "description": "Build software systems",
         "salary": "70,000 USD to 120,000+ USD",
-        "skills": [
-            "Java",
-            "Python",
-            "SQL",
-            "Problem Solving",
-            "OOP"
-        ],
+        "skills": ["Java", "Python", "SQL", "Problem Solving", "OOP"],
         "educationPath": "Computer Science Degree or Bootcamp",
         "roadmap": [
-            {
-                "title": "1. Fundamentals",
-                "desc": "Programming basics, DSA, OOP and core CS concepts."
-            },
-            {
-                "title": "2. Projects & Practice",
-                "desc": "Build real-world projects."
-            }
+            {"title": "1. Fundamentals", "desc": "Programming basics, DSA, OOP and core CS concepts."},
+            {"title": "2. Projects & Practice", "desc": "Build real-world projects."}
         ]
     },
 
@@ -331,22 +357,11 @@ careers = {
         "careerName": "UI/UX Designer",
         "description": "Design user interfaces",
         "salary": "55,000 USD to 100,000+ USD",
-        "skills": [
-            "Figma",
-            "Adobe XD",
-            "Typography",
-            "Creativity"
-        ],
+        "skills": ["Figma", "Adobe XD", "Typography", "Creativity"],
         "educationPath": "Graphic Design Degree",
         "roadmap": [
-            {
-                "title": "1. Design Basics",
-                "desc": "Learn layouts and typography."
-            },
-            {
-                "title": "2. Design Tools",
-                "desc": "Master Figma and Adobe XD."
-            }
+            {"title": "1. Design Basics", "desc": "Learn layouts and typography."},
+            {"title": "2. Design Tools", "desc": "Master Figma and Adobe XD."}
         ]
     },
 
@@ -354,21 +369,11 @@ careers = {
         "careerName": "HR Manager",
         "description": "Manage employees",
         "salary": "50,000 USD to 90,000+ USD",
-        "skills": [
-            "Communication",
-            "Leadership",
-            "Recruitment"
-        ],
+        "skills": ["Communication", "Leadership", "Recruitment"],
         "educationPath": "HR Degree or MBA",
         "roadmap": [
-            {
-                "title": "1. Communication Skills",
-                "desc": "Improve leadership skills."
-            },
-            {
-                "title": "2. HR Basics",
-                "desc": "Learn hiring and onboarding."
-            }
+            {"title": "1. Communication Skills", "desc": "Improve leadership skills."},
+            {"title": "2. HR Basics", "desc": "Learn hiring and onboarding."}
         ]
     },
 
@@ -376,22 +381,11 @@ careers = {
         "careerName": "Data Analyst",
         "description": "Analyze business data",
         "salary": "60,000 USD to 110,000+ USD",
-        "skills": [
-            "Excel",
-            "SQL",
-            "Python",
-            "Power BI"
-        ],
+        "skills": ["Excel", "SQL", "Python", "Power BI"],
         "educationPath": "Statistics or CS Degree",
         "roadmap": [
-            {
-                "title": "1. Data Foundations",
-                "desc": "Learn Excel and SQL."
-            },
-            {
-                "title": "2. Visualization",
-                "desc": "Master Power BI."
-            }
+            {"title": "1. Data Foundations", "desc": "Learn Excel and SQL."},
+            {"title": "2. Visualization", "desc": "Master Power BI."}
         ]
     }
 }
@@ -402,17 +396,9 @@ def get_career_details(career_key: str):
     if career_key not in careers:
         return {"error": "Career not found"}
 
-    career = careers[career_key]
+    career_doc = careers[career_key]
 
-    career_doc = {
-        "careerName": career["careerName"],
-        "description": career["description"],
-        "skills": career["skills"],
-        "salary": career["salary"],
-        "educationPath": career["educationPath"],
-        "roadmap": career["roadmap"]
-    }
-
+    # save to DB
     careers_details_collection.insert_one(career_doc)
 
     return career_doc
