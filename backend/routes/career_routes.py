@@ -399,6 +399,6 @@ def get_career_details(career_key: str):
     career_doc = careers[career_key]
 
     # save to DB
-    careers_details_collection.insert_one(career_doc)
+   # careers_details_collection.insert_one(career_doc)
 
     return career_doc
