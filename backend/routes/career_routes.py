@@ -192,6 +192,26 @@ def calculate_career(data: AssessmentRequest):
         "educationPath": career["educationPath"],
         "roadmap": career["roadmap"]
     }
+@router.get("/career-details/{career_key}")
+def get_career_details(career_key: str):
+
+    if career_key not in careers:
+        return {"error": "Career not found"}
+
+    career = careers[career_key]
+
+    career_doc = {
+        "careerName": career["careerName"],
+        "description": career["description"],
+        "skills": career["skills"],
+        "salary": career["salary"],
+        "educationPath": career["educationPath"],
+        "roadmap": career["roadmap"]
+    }
+
+    careers_details_collection.insert_one(career_doc)
+
+    return career_doc
 # @router.post("/career-assessment")
 # def calculate_career(data: AssessmentRequest):
 
