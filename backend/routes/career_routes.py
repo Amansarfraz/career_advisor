@@ -178,17 +178,7 @@ def calculate_career(data: AssessmentRequest):
     # =========================
     # 2. CAREER DETAILS SAVE
     # =========================
-    career_doc = {
-        "careerName": career["careerName"],
-        "description": career["description"],
-        "skills": career["skills"],
-        "salary": career["salary"],
-        "educationPath": career["educationPath"],
-        "roadmap": career["roadmap"]
-    }
-
-    careers_details_collection.insert_one(career_doc)
-
+   
     # =========================
     # RETURN FULL RESPONSE
     # =========================
