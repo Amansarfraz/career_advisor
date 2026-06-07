@@ -390,16 +390,16 @@ careers = {
     }
 }
 
+
 # @router.get("/career-details/{career_key}")
 # def get_career_details(career_key: str):
 
 #     if career_key not in careers:
 #         return {"error": "Career not found"}
 
-#     career_doc = careers[career_key]
+#     career_doc = careers[career_key].copy()
 
-#     # save to DB
-#    # careers_details_collection.insert_one(career_doc)
+#     careers_details_collection.insert_one(career_doc)
 
 #     return career_doc
 @router.get("/career-details/{career_key}")
@@ -408,11 +408,13 @@ def get_career_details(career_key: str):
     if career_key not in careers:
         return {"error": "Career not found"}
 
-    career_doc = careers[career_key]
+    # copy banao
+    career_doc = careers[career_key].copy()
 
     result = careers_details_collection.insert_one(career_doc)
 
     return {
+        "success": True,
         "inserted_id": str(result.inserted_id),
         "career": career_doc
     }
