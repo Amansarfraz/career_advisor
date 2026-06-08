@@ -137,6 +137,45 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
                             );
                           }
                         },
+                        // onPressed: () async {
+                        //   String careerKey = "";
+
+                        //   switch (widget.careerName.toLowerCase()) {
+                        //     case "software engineer":
+                        //       careerKey = "software-engineer";
+                        //       break;
+
+                        //     case "data analyst":
+                        //       careerKey = "data-analyst";
+                        //       break;
+
+                        //     case "hr manager":
+                        //       careerKey = "hr-manager";
+                        //       break;
+
+                        //     case "ui/ux designer":
+                        //       careerKey = "ui-ux-designer";
+                        //       break;
+                        //   }
+
+                        //   final response = await ApiService().getCareerDetails(
+                        //     careerKey,
+                        //   );
+
+                        //   if (response["success"] == true) {
+                        //     final career = CareerModel.fromJson(
+                        //       response["career"],
+                        //     );
+
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (_) =>
+                        //             CareerDetailsScreen(career: career),
+                        //       ),
+                        //     );
+                        //   }
+                        // },
                         // onPressed: () {
                         //   Navigator.pushReplacement(
                         //     context,
