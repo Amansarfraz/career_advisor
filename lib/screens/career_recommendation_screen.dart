@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'career_details_screen.dart';
 import 'career_assessment_screen.dart';
 import '../models/career_model.dart';
+import '../services/api_service.dart';
 
 class CareerRecommendationScreen extends StatefulWidget {
   final int matchPercentage;
@@ -97,16 +98,54 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
                           color: Colors.white,
                           size: 28,
                         ),
+                        onPressed: () async {
+                          String careerKey = "";
 
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const CareerAssessmentScreen(),
-                            ),
+                          switch (widget.careerName.toLowerCase()) {
+                            case "software engineer":
+                              careerKey = "software-engineer";
+                              break;
+
+                            case "data analyst":
+                              careerKey = "data-analyst";
+                              break;
+
+                            case "hr manager":
+                              careerKey = "hr-manager";
+                              break;
+
+                            case "ui/ux designer":
+                              careerKey = "ui-ux-designer";
+                              break;
+                          }
+
+                          final response = await ApiService().getCareerDetails(
+                            careerKey,
                           );
+
+                          if (response["success"] == true) {
+                            final career = CareerModel.fromJson(
+                              response["career"],
+                            );
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    CareerDetailsScreen(career: career),
+                              ),
+                            );
+                          }
                         },
+                        // onPressed: () {
+                        //   Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) =>
+                        //           const CareerAssessmentScreen(),
+                        //     ),
+                        //   );
+                        // },
                       ),
                     ),
 

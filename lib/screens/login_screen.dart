@@ -113,6 +113,7 @@
 // // }
 import 'package:flutter/material.dart';
 import 'career_assessment_screen.dart'; // Your assessment screen
+import '../services/api_service.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -195,13 +196,12 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () async {
-                  // 🔹 Simulate login delay
-                  await Future.delayed(const Duration(seconds: 1));
+                  final result = await ApiService().login(
+                    emailController.text,
+                    passwordController.text,
+                  );
 
-                  // 🔹 Dummy login always succeeds
-                  bool success = true;
-
-                  if (success) {
+                  if (result["success"] == true) {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -210,10 +210,32 @@ class LoginScreen extends StatelessWidget {
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Invalid Credentials")),
+                      SnackBar(
+                        content: Text(result["message"] ?? "Login Failed"),
+                      ),
                     );
                   }
                 },
+                // onPressed: () async {
+                //   // 🔹 Simulate login delay
+                //   await Future.delayed(const Duration(seconds: 1));
+
+                //   // 🔹 Dummy login always succeeds
+                //   bool success = true;
+
+                //   if (success) {
+                //     Navigator.pushReplacement(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (_) => const CareerAssessmentScreen(),
+                //       ),
+                //     );
+                //   } else {
+                //     ScaffoldMessenger.of(context).showSnackBar(
+                //       const SnackBar(content: Text("Invalid Credentials")),
+                //     );
+                //   }
+                // },
                 child: const Text("Login", style: TextStyle(fontSize: 20)),
               ),
             ],
