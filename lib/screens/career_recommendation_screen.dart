@@ -135,56 +135,16 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
                                     CareerDetailsScreen(career: career),
                               ),
                             );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  response["message"] ?? "Career not found",
+                                ),
+                              ),
+                            );
                           }
                         },
-                        // onPressed: () async {
-                        //   String careerKey = "";
-
-                        //   switch (widget.careerName.toLowerCase()) {
-                        //     case "software engineer":
-                        //       careerKey = "software-engineer";
-                        //       break;
-
-                        //     case "data analyst":
-                        //       careerKey = "data-analyst";
-                        //       break;
-
-                        //     case "hr manager":
-                        //       careerKey = "hr-manager";
-                        //       break;
-
-                        //     case "ui/ux designer":
-                        //       careerKey = "ui-ux-designer";
-                        //       break;
-                        //   }
-
-                        //   final response = await ApiService().getCareerDetails(
-                        //     careerKey,
-                        //   );
-
-                        //   if (response["success"] == true) {
-                        //     final career = CareerModel.fromJson(
-                        //       response["career"],
-                        //     );
-
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (_) =>
-                        //             CareerDetailsScreen(career: career),
-                        //       ),
-                        //     );
-                        //   }
-                        // },
-                        // onPressed: () {
-                        //   Navigator.pushReplacement(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) =>
-                        //           const CareerAssessmentScreen(),
-                        //     ),
-                        //   );
-                        // },
                       ),
                     ),
 
@@ -374,35 +334,18 @@ class _CareerRecommendationScreenState extends State<CareerRecommendationScreen>
                         MaterialPageRoute(
                           builder: (context) => CareerDetailsScreen(
                             career: CareerModel(
-                              name: widget.careerName,
-
-                              description: widget.shortExplanation,
-
+                              careerName: widget.career["careerName"] ?? "",
+                              shortExplanation:
+                                  widget.career["shortExplanation"] ?? "",
                               requiredSkills:
-                                  "Java, Python, SQL, Problem Solving",
-
+                                  widget.career["requiredSkills"] ?? "",
                               educationPath:
-                                  "Computer Science Degree or Bootcamp",
-
-                              salaryRange: "70,000 USD to 120,000+ USD",
-
-                              roadmap: [
-                                {
-                                  "title": "1. Fundamentals",
-                                  "desc": "Learn programming basics and OOP.",
-                                },
-
-                                {
-                                  "title": "2. Projects",
-                                  "desc": "Build real-world projects.",
-                                },
-
-                                {
-                                  "title": "3. Growth",
-                                  "desc":
-                                      "Choose specialization and improve skills.",
-                                },
-                              ],
+                                  widget.career["educationPath"] ?? "",
+                              salaryRange: widget.career["salaryRange"] ?? "",
+                              roadmap:
+                                  (widget.career["roadmap"] as List<dynamic>)
+                                      .map((e) => RoadmapStep.fromJson(e))
+                                      .toList(),
                             ),
                           ),
                         ),

@@ -23,7 +23,7 @@ class CareerCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                career.name,
+                career.careerName,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -31,7 +31,7 @@ class CareerCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                career.description,
+                career.shortExplanation,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 14, color: Colors.black87),
