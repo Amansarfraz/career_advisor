@@ -158,31 +158,8 @@ careers = {
 
 
 
-# @router.get("/career-details/{career_key}")
-# def get_career_details(career_key: str):
-
-#     if career_key not in careers:
-#         return {
-#             "success": False,
-#             "message": "Career not found"
-#         }
-
-#     career_doc = careers[career_key].copy()
-
-#     result = careers_details_collection.insert_one(
-#         career_doc
-#     )
-
-#     return {
-#         "success": True,
-#         "inserted_id": str(result.inserted_id),
-#         "career": career_doc
-#     }
 @router.get("/career-details/{career_key}")
 def get_career_details(career_key: str):
-
-    print("API HIT")
-    print("Career Key:", career_key)
 
     if career_key not in careers:
         return {
@@ -192,12 +169,35 @@ def get_career_details(career_key: str):
 
     career_doc = careers[career_key].copy()
 
-    result = careers_details_collection.insert_one(career_doc)
-
-    print("Inserted:", result.inserted_id)
+    result = careers_details_collection.insert_one(
+        career_doc
+    )
 
     return {
         "success": True,
         "inserted_id": str(result.inserted_id),
         "career": career_doc
     }
+# @router.get("/career-details/{career_key}")
+# def get_career_details(career_key: str):
+
+#     print("API HIT")
+#     print("Career Key:", career_key)
+
+#     if career_key not in careers:
+#         return {
+#             "success": False,
+#             "message": "Career not found"
+#         }
+
+#     career_doc = careers[career_key].copy()
+
+#     result = careers_details_collection.insert_one(career_doc)
+
+#     print("Inserted:", result.inserted_id)
+
+#     return {
+#         "success": True,
+#         "inserted_id": str(result.inserted_id),
+#         "career": career_doc
+#     }

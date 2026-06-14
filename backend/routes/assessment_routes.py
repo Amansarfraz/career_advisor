@@ -164,12 +164,14 @@ def calculate_career(data: AssessmentRequest):
     }
 
     explanations = {
-        "Software Engineer": "You enjoy logical thinking, coding, and solving technical problems.",
-        "UI/UX Designer": "You are creative and enjoy designing user-friendly experiences.",
-        "HR Manager": "You are good at communication, teamwork, and managing people.",
-        "Data Analyst": "You enjoy working with data, records, and analytical thinking."
-    }
+    "Software Engineer": "You enjoy logical thinking, coding, and solving technical problems. You are comfortable working with technology and enjoy creating innovative software solutions.",
 
+    "UI/UX Designer": "You are creative and enjoy designing user-friendly experiences. You pay attention to visual details and like making products both attractive and easy to use.",
+
+    "HR Manager": "You are good at communication, teamwork, and managing people. You enjoy building positive workplace relationships and helping teams work effectively together.",
+
+    "Data Analyst": "You enjoy working with data, records, and analytical thinking. You like finding patterns, interpreting information, and supporting decisions through data insights."
+}
     for ans in data.answers:
         if ans == 0:
             scores["Software Engineer"] += 1
