@@ -234,20 +234,6 @@ class _CareerAssessmentScreenState extends State<CareerAssessmentScreen> {
           isLoading = false;
         });
 
-        // Navigator.pushReplacement(
-        //   context,
-
-        //   MaterialPageRoute(
-        //     builder: (context) => CareerRecommendationScreen(
-        //       matchPercentage: result["matchPercent"],
-
-        //       careerName: result["careerName"],
-
-        //       shortExplanation: result["explanation"],
-        //     ),
-        //   ),
-        // );
-
         Navigator.push(
           context,
           MaterialPageRoute(
